@@ -19,11 +19,13 @@ namespace FlightGearSimulator.src
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         public void NotifyPropertyChanged(string propName)
         {
             if (PropertyChanged != null)
             {
                 // The "propName" was changed, notify the relevant items
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
             }
         }
 
@@ -31,11 +33,19 @@ namespace FlightGearSimulator.src
         public float FG_Speed
         {
             get { return model.Speed; }
+            set {
+                model.Speed = value;
+                NotifyPropertyChanged("FG_Speed");
+            }
         }
 
         public int FG_Time
         {
             get { return model.CurrentTime; }
+            set {
+                model.CurrentTime = value;
+                NotifyPropertyChanged("FG_Time");
+            }
         }
     // TODO: Actually implement, this is only a stub
     internal interface IFlightModel

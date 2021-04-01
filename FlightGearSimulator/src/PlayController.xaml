@@ -35,8 +35,8 @@
             </Image.Source>
         </Image>
         <Label Content="Play Speed: " HorizontalAlignment="Left" Margin="340,340,0,0" VerticalAlignment="Top" Height="30" Width="120" FontSize ="20" FontFamily="Arial" Grid.Column="1"/>
-        <Label Content="{Binding FG_Speed}" HorizontalAlignment="Left" Margin="460.4,340,0,0" VerticalAlignment="Top" Height="30" Width="60" FontSize ="20" FontFamily="Arial" Grid.Column="1"/>
+        <Label Content="{Binding FG_Speed, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="460.4,340,0,0" VerticalAlignment="Top" Height="30" Width="60" FontSize ="20" FontFamily="Arial" Grid.Column="1"/>
         <Label Content="Time: " HorizontalAlignment="Left" Margin="525,340,0,0" VerticalAlignment="Top" Height="30" Width="60" FontSize ="20" FontFamily="Arial" Grid.Column="1"/>
-        <Label Content="{Binding FG_CurrentTime}" HorizontalAlignment="Left" Margin="590,340,0,0" VerticalAlignment="Top" Height="30" Width="60" FontSize ="20" FontFamily="Arial" Grid.Column="1"/>
+        <Label Content="{Binding FG_CurrentTime, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="590,340,0,0" VerticalAlignment="Top" Height="30" Width="60" FontSize ="20" FontFamily="Arial" Grid.Column="1"/>
     </Grid>
 </Window>
