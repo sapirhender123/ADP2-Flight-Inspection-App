@@ -6,13 +6,16 @@
         xmlns:local="clr-namespace:FlightGearSimulator.src"
         mc:Ignorable="d"
         Title="PlayController" Height="450" Width="800">
-    <!-- images -->
+    <!-- Images, slider, labels and binding -->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="25*"/>
             <ColumnDefinition Width="372*"/>
         </Grid.ColumnDefinitions>
-        <Slider Value="{Binding FG_CurrentTime}" HorizontalAlignment="Left" Height="49" Margin="0,371,-0.4,0" VerticalAlignment="Top" Width="794" Grid.ColumnSpan="2"/>
+        <!-- change the time when the slider is moving -->
+
+        <Slider Value="{Binding FG_CurrentTime}" HorizontalAlignment="Left" Height="49" Margin="0,371,-0.4,0" VerticalAlignment="Top" Width="794" Grid.ColumnSpan="2"
+        TickPlacement="BottomRight" TickFrequency="2" IsSnapToTickEnabled="True"/>
         <Image MouseDown="PlayController_Play" RenderTransformOrigin="0.853,0.504" Margin="95.4,335,608.6,49" Grid.Column="1">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="300" UriSource="resources\Play.png" />
@@ -34,9 +37,9 @@
                 <BitmapImage DecodePixelWidth="300" UriSource="resources\StopButton.png" />
             </Image.Source>
         </Image>
-        <Label Content="Play Speed: " HorizontalAlignment="Left" Margin="340,340,0,0" VerticalAlignment="Top" Height="30" Width="120" FontSize ="20" FontFamily="Arial" Grid.Column="1"/>
-        <Label Content="{Binding FG_Speed, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="460.4,340,0,0" VerticalAlignment="Top" Height="30" Width="60" FontSize ="20" FontFamily="Arial" Grid.Column="1"/>
-        <Label Content="Time: " HorizontalAlignment="Left" Margin="525,340,0,0" VerticalAlignment="Top" Height="30" Width="60" FontSize ="20" FontFamily="Arial" Grid.Column="1"/>
-        <Label Content="{Binding FG_CurrentTime, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="590,340,0,0" VerticalAlignment="Top" Height="30" Width="60" FontSize ="20" FontFamily="Arial" Grid.Column="1"/>
+        <Label Content="Play Speed: " HorizontalAlignment="Left" Margin="340,340,0,0" VerticalAlignment="Top" Height="35" Width="120" FontSize ="20" FontFamily="Arial" Grid.Column="1"/>
+        <Label Content="{Binding FG_Speed, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="{}{0:#,0.0}" HorizontalAlignment="Left" Margin="460,340,0,0" VerticalAlignment="Top" Height="35" Width="60" FontSize ="20" FontFamily="Arial" Grid.Column="1"/>
+        <Label Content="Time: " HorizontalAlignment="Left" Margin="525,340,0,0" VerticalAlignment="Top" Height="35" Width="60" FontSize ="20" FontFamily="Arial" Grid.Column="1"/>
+        <Label Content="{Binding FG_TimeString, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="590,340,0,0" VerticalAlignment="Top" Height="35" Width="144" FontSize ="20" FontFamily="Arial" Grid.Column="1"/>
     </Grid>
 </Window>
