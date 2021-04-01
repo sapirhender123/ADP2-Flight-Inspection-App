@@ -1,15 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Windows.Input;
 
 namespace FlightGearSimulator.src
 {
     class PlayerViewModel : INotifyPropertyChanged
     {
-        readonly IFlightModel model;
-        private float prev_speed;
+        public FlightModel model;
 
-        public PlayerViewModel(IFlightModel model)
+        public PlayerViewModel(FlightModel model)
         {
             this.model = model;
             this.model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
@@ -47,12 +45,5 @@ namespace FlightGearSimulator.src
                 NotifyPropertyChanged("FG_Time");
             }
         }
-    // TODO: Actually implement, this is only a stub
-    internal interface IFlightModel
-    {
-        event PropertyChangedEventHandler PropertyChanged;
-
-        int CurrentTime { get; set; }
-        float Speed { get; set; }
     }
 }
