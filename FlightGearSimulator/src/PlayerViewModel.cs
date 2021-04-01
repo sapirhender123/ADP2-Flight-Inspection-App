@@ -37,12 +37,28 @@ namespace FlightGearSimulator.src
             }
         }
 
-        public int FG_Time
+        private String timeString = "00:00:00";
+        public int FG_CurrentTime
         {
-            get { return model.CurrentTime; }
+            get { 
+                TimeSpan t = TimeSpan.FromSeconds(model.CurrentTime);
+                timeString = string.Format("{0:D2}:{1:D2}:{2:D2}",
+                                t.Hours,
+                                t.Minutes,
+                                t.Seconds);
+                NotifyPropertyChanged("FG_TimeString");
+                return model.CurrentTime;
+            }
             set {
                 model.CurrentTime = value;
-                NotifyPropertyChanged("FG_Time");
+                NotifyPropertyChanged("FG_CurrentTime");
+            }
+        }
+
+        public String FG_TimeString
+        {
+            get {
+                return timeString;
             }
         }
     }
