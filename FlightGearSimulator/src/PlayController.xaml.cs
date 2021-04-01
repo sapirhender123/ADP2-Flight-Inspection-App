@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Input;
 
 namespace FlightGearSimulator.src
 {
@@ -8,10 +10,11 @@ namespace FlightGearSimulator.src
     public partial class PlayController : Window
     {
         readonly PlayerViewModel vm;
+        private float prev_speed;
         public PlayController()
         {
             InitializeComponent();
-            vm = new PlayerViewModel(null); // TODO: new PlayerModel(new TCPConnection())
+            vm = new PlayerViewModel(new FlightModel()); // TODO: (new TCPConnection())
             DataContext = vm;
         }
 
