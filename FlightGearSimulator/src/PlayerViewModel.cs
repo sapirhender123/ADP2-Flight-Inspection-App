@@ -37,35 +37,6 @@ namespace FlightGearSimulator.src
         {
             get { return model.CurrentTime; }
         }
-
-        // Play buttons callbacks
-        private void PlayController_Play(object sender, MouseButtonEventArgs e)
-        {
-            model.Speed = prev_speed;
-        }
-
-        private void PlayController_FastFordward(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void PlayController_MoveBack(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void PlayController_Pause(object sender, MouseButtonEventArgs e)
-        {
-            prev_speed = FG_Speed;
-            model.Speed = 0;
-        }
-
-        private void PlayController_Stop(object sender, MouseButtonEventArgs e)
-        {
-            model.CurrentTime = 0;
-        }
-    }
-
     // TODO: Actually implement, this is only a stub
     internal interface IFlightModel
     {
