@@ -1,13 +1,14 @@
-﻿using System;
-using System.Windows;
+﻿using FlightGearSimulator.src;
+using System;
+using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace FlightGearSimulator.src
+namespace FlightGearSimulator.User_Controls
 {
     /// <summary>
     /// Interaction logic for PlayController.xaml
     /// </summary>
-    public partial class PlayController : Window
+    public partial class PlayController : UserControl
     {
         readonly PlayerViewModel vm;
         private float prev_speed = 1;
@@ -16,7 +17,7 @@ namespace FlightGearSimulator.src
             InitializeComponent();
             vm = new PlayerViewModel(new FlightModel()); // TODO: (new TCPConnection())
             vm.FG_Speed = 0;
-            DataContext = vm;
+            this.DataContext = vm;
         }
 
         private void PlayController_Play(object sender, MouseButtonEventArgs e)
@@ -32,7 +33,8 @@ namespace FlightGearSimulator.src
             if (vm.FG_Speed == 0)
             {
                 prev_speed += 0.1f;
-            } else
+            }
+            else
             {
                 vm.FG_Speed += 0.1f;
             }
@@ -49,7 +51,7 @@ namespace FlightGearSimulator.src
                     prev_speed = 0;
                 }
             }
-            else if (vm.FG_Speed > 0) 
+            else if (vm.FG_Speed > 0)
             {
                 vm.FG_Speed -= 0.1f;
                 if (vm.FG_Speed < 0)

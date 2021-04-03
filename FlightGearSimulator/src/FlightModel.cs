@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Threading;
 
 namespace FlightGearSimulator.src
 {
@@ -10,7 +12,7 @@ namespace FlightGearSimulator.src
 
     class FlightModel : IFlightModel
     {
-        private int maxTime_s = 2 * 60;
+        private readonly int maxTime_s = 2 * 60;
         public FlightModel() {
             (new Thread(() =>
             {
