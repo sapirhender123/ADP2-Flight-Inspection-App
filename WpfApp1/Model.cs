@@ -77,9 +77,14 @@ namespace FIApp
             stop = false;
             csvParser(); //##
         }
-        public double[,] getProperties()
+        public List<double> getFeatures(int idx)
         {
-            return doubleProperties;
+            List<double> features = new List<double>();
+            for (int i = 0; i <= numberOfRows; i++)
+            {
+                features.Add(doubleProperties[i, idx]);
+            }
+            return features;
         }
         //other properties and fields
         private double aileron;
@@ -324,10 +329,9 @@ namespace FIApp
             for (int i = 0; i < row; i++)
             {
                 string[] properties = data[i].Split(',');
-                int newj = 0; //index used by float properties, needed because properties 15 and 16 are in different array
                 for (int j = 0; j < properties.Length; j++)
                 {
-                    doubleProperties[i, newj++] = double.Parse(properties[j]);
+                    doubleProperties[i, j] = double.Parse(properties[j]);
                 }
             }
             
