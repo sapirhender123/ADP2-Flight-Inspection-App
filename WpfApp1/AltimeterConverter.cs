@@ -6,14 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace WpfApp1
+namespace FIApp
 {
     class AltimeterConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             
-            float newVal = (float)value;
+            double newVal = (double)value;
             int newParameter = Int32.Parse((string)parameter);
             if (newVal < 0)
             {

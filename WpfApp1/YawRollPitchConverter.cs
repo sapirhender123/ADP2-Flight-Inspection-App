@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace WpfApp1
+namespace FIApp
 {
     class YawRollPitchConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            float newVal = (float)value;
+            double newVal = (double)value;
             int newParameter = Int32.Parse((string)parameter);//1 for yaw and roll, 2 for pitch 
 
             if (newVal > 180)

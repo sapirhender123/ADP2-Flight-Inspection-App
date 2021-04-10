@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace WpfApp1
+namespace FIApp
 {
     class AirSpeedConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            float newVal = (float)value;
+            double newVal = (double)value;
             if (newVal <= 40)
             {
                 return 15.5;

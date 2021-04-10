@@ -11,8 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using FIApp.ViewModels;
 
-namespace WpfApp1
+namespace FIApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
