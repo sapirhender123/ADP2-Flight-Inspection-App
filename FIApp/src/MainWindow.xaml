@@ -9,5 +9,9 @@
     <Grid>
         <FIApp:PlayController Margin="-10,250,0,0"/>
         <FIApp:AnomalyDetector Margin="0,0,0,0"/>
+        <FIApp:Graphs Title="Orignal Graph" Margin="220,0,279,251"/>
+        <FIApp:Graphs Title="Linear Regression" Margin="220,170,0,101"/>
+        <FIApp:Graphs Title="Correlative Graph" Margin="515,0,10,251"/>
+        <FIApp:FeatureList Margin="10,70,574,296"/>
     </Grid>
 </Window>

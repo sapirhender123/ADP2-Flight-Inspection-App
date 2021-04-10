@@ -70,6 +70,14 @@
       <DependentUpon>AnomalyDetector.xaml</DependentUpon>
     </Compile>
     <Compile Include="src\AnomalyDetectorViewModel.cs" />
+    <Compile Include="src\FeatureList.xaml.cs">
+      <DependentUpon>FeatureList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="src\FeatureListViewModel.cs" />
+    <Compile Include="src\Graphs.xaml.cs">
+      <DependentUpon>Graphs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="src\GraphsViewModel.cs" />
     <Compile Include="src\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -85,6 +93,14 @@
     <Page Include="src\AnomalyDetector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\FeatureList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="src\Graphs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="src\MainWindow.xaml">
       <SubType>Designer</SubType>

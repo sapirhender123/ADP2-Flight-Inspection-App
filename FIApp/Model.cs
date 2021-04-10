@@ -88,6 +88,20 @@ namespace FIApp
         }
 
         //other properties and fields
+        string currentFeature;
+        public string CurrentFeature
+        {
+            set
+            {
+                this.currentFeature = value;
+                NotifyPropertyChanged("CurrentFeature");
+            }
+            get
+            {
+                return this.currentFeature;
+            }
+        }
+
         private double aileron;
         public double Aileron
         {
