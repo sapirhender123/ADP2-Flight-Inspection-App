@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -15,6 +16,13 @@ namespace FIApp
             this.model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("AD_" + e.PropertyName);
+            };
+            this.model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                if (e.PropertyName == "CurrentFeature")
+                {
+                    ResetAnomalyList();
+                }
             };
         }
 
@@ -37,7 +45,7 @@ namespace FIApp
             if (!File.Exists("reg_flight.csv") || !File.Exists("anomaly_flight.csv"))
             {
                 Console.WriteLine("Missing files");
-                MessageBox.Show("Missing files", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                //MessageBox.Show("Missing files", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
 
                 return;
             }
@@ -56,6 +64,47 @@ namespace FIApp
                 DLLPluginPath = value;
                 LoadPlugin(DLLPluginPath);
             }
+        }
+
+        public string AD_CurrentFeature
+        {
+            get
+            {
+                return model.CurrentFeature;
+            }
+        }
+
+        private KeyValuePair<String, float> anomalyList;
+        public KeyValuePair<String, float> AD_AnomalyList
+        {
+            get
+            {
+                return anomalyList;
+            }
+            set
+            {
+                anomalyList = value;
+            }
+        }
+
+        List<String> anomalyListItems;
+        public List<String> AnomalyListItems
+        {
+            set
+            {
+                anomalyListItems = value;
+                NotifyPropertyChanged("AnomalyListItems");
+            }
+            get
+            {
+                return anomalyListItems;
+            }
+        }
+
+        private void ResetAnomalyList()
+        {
+            anomalyListItems = new List<String>();
+            NotifyPropertyChanged("AnomalyListItems");
         }
     }
 }

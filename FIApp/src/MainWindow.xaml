@@ -6,12 +6,12 @@
         xmlns:FIApp="clr-namespace:FIApp.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <FIApp:PlayController Margin="-10,250,0,0"/>
-        <FIApp:AnomalyDetector Margin="0,0,0,0"/>
-        <FIApp:Graphs Title="Orignal Graph" Margin="220,0,279,251"/>
-        <FIApp:Graphs Title="Linear Regression" Margin="220,170,0,101"/>
-        <FIApp:Graphs Title="Correlative Graph" Margin="515,0,10,251"/>
-        <FIApp:FeatureList Margin="10,70,574,296"/>
+    <Grid x:Name="GridContainer">
+        <FIApp:PlayController Margin="0,246,0,0"/>
+        <FIApp:AnomalyDetector Margin="10,0,544,251"/>
+        <FIApp:Graphs Title="Orignal Graph" Margin="267,0,267,251"/>
+        <FIApp:Graphs Title="Linear Regression" Margin="267,170,0,101"/>
+        <FIApp:Graphs Title="Correlative Graph" Margin="530,0,10,251"/>
+        <FIApp:FeatureList Margin="0,182,544,184" Width="Auto"/>
     </Grid>
 </Window>

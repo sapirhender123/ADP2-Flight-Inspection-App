@@ -18,7 +18,7 @@ namespace FIApp
         private SortedDictionary<string, List<double>> csvData; //save all csv data
 
         //xml
-        List<string> features; //save features's names
+        public List<string> features; //save features's names
 
         //client fields
         private TcpClient client;
@@ -85,6 +85,7 @@ namespace FIApp
             currentRow = 0;
             sleep = 0;
             stop = false;
+            features = new List<string>();
         }
 
         //other properties and fields

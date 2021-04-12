@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualBasic.FileIO;
-using System;
 using System.Windows.Controls;
 
 namespace FIApp.Views
@@ -13,18 +12,11 @@ namespace FIApp.Views
         {
             InitializeComponent();
 
-            using (TextFieldParser parser = new TextFieldParser("anomaly_flight.csv"))
+            int idx = 0;
+            foreach (string header in model.features)
             {
-                parser.TextFieldType = FieldType.Delimited;
-                parser.SetDelimiters(",");
-                string [] csvHeaders = parser.ReadFields();
-                int idx = 0;
-                foreach (string header in csvHeaders)
-                {
-                    csvHeaders[idx] = String.Concat(Convert.ToString(idx), "_", header);
-                    FeatureSelection.Items.Add(csvHeaders[idx]);
-                    idx++;
-                }
+                FeatureSelection.Items.Add(model.features[idx]);
+                idx++;
             }
         }
 

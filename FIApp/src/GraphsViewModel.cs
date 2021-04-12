@@ -86,6 +86,7 @@ namespace FlApp
                     while (!parser.EndOfData)
                     {
                         string[] fields = parser.ReadFields();
+                        // feature1,feature2,a,b
                         if (fields[0] == model.CurrentFeature)
                         {
                             correlativeFeature = fields[1];
