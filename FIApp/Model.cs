@@ -337,7 +337,7 @@ namespace FIApp
 
         public List<double> getDataByFeatureName(string feature)
         {
-            if (feature == null)
+            if (feature == null || !csvData.ContainsKey(feature))
             {
                 return new List<double> { };
             }

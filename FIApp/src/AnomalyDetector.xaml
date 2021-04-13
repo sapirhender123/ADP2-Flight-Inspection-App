@@ -1,11 +1,25 @@
-﻿<UserControl x:Class="FIApp.Views.AnomalyDetector"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Height="170" Width="240">
-    <Grid Margin="0,0,0,0">
-        <ComboBox Margin="5,0,0,0" Name="PluginSelection" HorizontalAlignment="Left" VerticalAlignment="Top" Width="230" Height="35" SelectionChanged="PluginSelection_SelectionChanged"/>
-        <ListBox Margin="5,40,5,5" Name="AnomalyList" ItemsSource="{Binding AnomalyListItems}"/>
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    x:Class="FIApp.Views.AnomalyDetector" 
+    mc:Ignorable="d" d:DesignWidth="240" d:DesignHeight="170">
+    <Grid>
+        <ComboBox ItemsSource="{Binding PluginListItems}" SelectedIndex="{Binding SelectedIndex}" SelectedItem="{Binding SelectedItem}" x:Name="PluginSelection" VerticalAlignment="Top" Height="35" SelectionChanged="PluginSelection_SelectionChanged"/>
+        <ListView ItemsSource="{Binding AnomalyListItems}" Background="AliceBlue" x:Name="AnomalyList" Margin="0,35,0,0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Height="40" Width="40">
+                            <Image.Source>
+                                <BitmapImage DecodePixelWidth="300" UriSource="{Binding ImagePath}" />
+                            </Image.Source>
+                        </Image>
+                        <TextBlock Text="{Binding Title}"  MouseDown="AnomalyList_MouseDown"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </UserControl>

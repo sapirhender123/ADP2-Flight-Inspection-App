@@ -4,6 +4,7 @@ using OxyPlot;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 
 namespace FlApp
@@ -71,11 +72,14 @@ namespace FlApp
 
         private void UpdateGraphData(string propName)
         {
-            if (propName == "CurrentFeature")
+            if (propName == "CurrentFeature" && model.CurrentFeature != "Select a feature")
             {
                 currentFeature = model.CurrentFeature;
 
-                NativeMethods.CallFuncFromDLLByName("LearnNormalDLL.dll", "LearnNormal");
+                if (!File.Exists("learnOutput.csv"))
+                {
+                    NativeMethods.CallFuncFromDLLByName("LearnNormalDLL.dll", "LearnNormal");
+                }
 
                 // Parse LearnNormal output -> in file learnOutput.csv
                 using (TextFieldParser parser = new TextFieldParser("learnOutput.csv"))

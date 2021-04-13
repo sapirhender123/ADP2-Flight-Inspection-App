@@ -7,6 +7,24 @@ using System.Windows;
 
 namespace FIApp
 {
+    public class AnomalyItem
+    {
+        private string title;
+        public string Title
+        {
+            get { return this.title; }
+            set { this.title = value; }
+        }
+
+        private String imagePath;
+        public String ImagePath
+        {
+            get { return this.imagePath; }
+            set { this.imagePath = value; }
+        }
+
+    }
+
     class AnomalyDetectorViewModel : INotifyPropertyChanged
     {
         public Model model;
@@ -74,21 +92,8 @@ namespace FIApp
             }
         }
 
-        private KeyValuePair<String, float> anomalyList;
-        public KeyValuePair<String, float> AD_AnomalyList
-        {
-            get
-            {
-                return anomalyList;
-            }
-            set
-            {
-                anomalyList = value;
-            }
-        }
-
-        List<String> anomalyListItems;
-        public List<String> AnomalyListItems
+        List<AnomalyItem> anomalyListItems;
+        public List<AnomalyItem> AnomalyListItems
         {
             set
             {
@@ -101,10 +106,81 @@ namespace FIApp
             }
         }
 
+        List<String> pluginListItems;
+        public List<String> PluginListItems
+        {
+            set
+            {
+                pluginListItems = value;
+                NotifyPropertyChanged("PluginListItems");
+            }
+            get
+            {
+                return pluginListItems;
+            }
+        }
+
+        private int selectedIndex;
+        public int SelectedIndex
+        {
+            get
+            {
+                return selectedIndex;
+            }
+
+            set
+            {
+                selectedIndex = value;
+                NotifyPropertyChanged("SelectedIndex");
+            }
+        }
+
+        private String selectedItem;
+        public String SelectedItem
+        {
+            get
+            {
+                return selectedItem;
+            }
+            set
+            {
+                selectedItem = value;
+                NotifyPropertyChanged("SelectedItem");
+            }
+        }
+
         private void ResetAnomalyList()
         {
-            anomalyListItems = new List<String>();
+            DLLPluginPath = "";
+            if (File.Exists("anomalyOutputFile.csv"))
+            {
+                File.Delete("anomalyOutputFile.csv");
+            }
+
+            List<AnomalyItem> items = new List<AnomalyItem>();
+            items.Add(new AnomalyItem
+            {
+                Title = "No anomalies found",
+                ImagePath = ""
+            });
+            anomalyListItems = items;
             NotifyPropertyChanged("AnomalyListItems");
+
+            SelectedIndex = 0;
+            SelectedItem = "Anomaly detection algorithm";
+        }
+
+        public int AD_CurrentTime
+        {
+            get
+            {
+                return model.CurrentTime;
+            }
+            set
+            {
+                model.CurrentTime = value;
+                NotifyPropertyChanged("AD_CurrentTime");
+            }
         }
     }
 }
