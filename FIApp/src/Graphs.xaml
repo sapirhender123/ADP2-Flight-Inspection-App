@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <oxy:Plot x:Name="Plot" Title="{Binding Title}" Margin="0,0,0,12">
+        <oxy:Plot x:Name="Plot" Title="{Binding Title}">
             <oxy:LineSeries ItemsSource="{Binding Points}"></oxy:LineSeries>
             <oxy:LineSeries ItemsSource="{Binding RegFeaturePoints}" LineStyle="None" MarkerType="Circle" MarkerSize="3" MarkerFill="Purple"></oxy:LineSeries>
         </oxy:Plot>

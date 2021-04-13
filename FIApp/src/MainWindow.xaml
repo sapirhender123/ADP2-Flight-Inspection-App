@@ -12,6 +12,6 @@
         <FIApp:Graphs Title="Orignal Graph" Margin="267,0,267,251"/>
         <FIApp:Graphs Title="Linear Regression" Margin="267,170,0,101"/>
         <FIApp:Graphs Title="Correlative Graph" Margin="530,0,10,251"/>
-        <FIApp:FeatureList Margin="0,182,544,184" Width="Auto"/>
+        <FIApp:FeatureList Margin="9,182,544,201" Width="Auto"/>
     </Grid>
 </Window>
