@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid x:Name="GridContainer">
-        <FIApp:PlayController Margin="0,246,0,0"/>
+        <FIApp:PlayController Margin="0,315,0,0" Height="96" VerticalAlignment="Top"/>
         <FIApp:AnomalyDetector Margin="10,0,544,251"/>
         <FIApp:Graphs Title="Orignal Graph" Margin="267,0,267,251"/>
         <FIApp:Graphs Title="Linear Regression" Margin="267,170,0,101"/>
