@@ -10,12 +10,13 @@ namespace FIApp.ViewModels
 {
     class JoystickViewModel : INotifyPropertyChanged
     {
-        private Model model;
+        public Model model;
+
         public JoystickViewModel(Model model)
         {
             this.model = model;
-            model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) 
-            { 
+            this.model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
                 NotifyPropertyChanged("VM_Aileron");
                 NotifyPropertyChanged("VM_Elevator");
                 NotifyPropertyChanged("VM_Rudder");
@@ -34,20 +35,19 @@ namespace FIApp.ViewModels
         //properties
         public double VM_Aileron
         {
-            get {
-                return model.Aileron; }
+            get { return model.Aileron; }
         }
         public double VM_Elevator
         {
             get { return model.Elevator; }
         }
-        public double VM_Eudder
+        public double VM_Rudder
         {
-             get { return model.Rudder; }
+            get { return model.Rudder; }
         }
         public double VM_Throttle0
         {
-             get { return model.Throttle0; }
+            get { return model.Throttle0; }
         }
 
     }

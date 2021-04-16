@@ -10,7 +10,7 @@
         <local:AileronElevatorConverter x:Key="AileronElevatorConverter"/>
     </UserControl.Resources>
     <Grid>
-        <Viewbox  HorizontalAlignment="Center" Height="300" VerticalAlignment="Top" Width="300">
+        <Viewbox  HorizontalAlignment="Center" Height="350" VerticalAlignment="Top" Width="300">
             <Canvas  x:Name="Base" Margin="222,32,230,47" Width="200" Height="200">
                 <Ellipse HorizontalAlignment="Left" Height="340" VerticalAlignment="Top" Width="340">
                     <Ellipse.Fill>

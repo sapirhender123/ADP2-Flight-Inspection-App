@@ -9,16 +9,12 @@ namespace FIApp.Views
     /// </summary>
     public partial class JoystickView : UserControl
     {
-        private JoystickViewModel vm;
+        readonly JoystickViewModel vm;
         public JoystickView()
         {
             InitializeComponent();
-            Model m = new Model();
-            vm = new JoystickViewModel(m);
+            vm = new JoystickViewModel(model);
             DataContext = vm;
-           // m.helper();
-            //m.connect();
-            //m.start();
         }
     }
 }
