@@ -3,10 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:pc="clr-namespace:FIApp.Views"
+        xmlns:FIApp="clr-namespace:FIApp.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <pc:PlayController Margin="-10,250,0,0"/>
+        <FIApp:PlayController Margin="-10,250,0,0"/>
+        <FIApp:AnomalyDetector Margin="0,0,0,0"/>
     </Grid>
 </Window>
