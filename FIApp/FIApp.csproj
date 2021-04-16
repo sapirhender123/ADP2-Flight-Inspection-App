@@ -66,9 +66,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model.cs" />
+    <Compile Include="src\AnomalyDetector.xaml.cs">
+      <DependentUpon>AnomalyDetector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="src\AnomalyDetectorViewModel.cs" />
     <Compile Include="src\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="src\NativeMethods.cs" />
     <Compile Include="src\PlayController.xaml.cs">
       <DependentUpon>PlayController.xaml</DependentUpon>
     </Compile>
@@ -77,6 +82,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="src\AnomalyDetector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="src\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -31,3 +31,11 @@ namespace FIApp.Views
         Model model = Globals.model;
     }
 }
+
+namespace FIApp.Views
+{
+    public partial class AnomalyDetector : UserControl
+    {
+        Model model = Globals.model;
+    }
+}
