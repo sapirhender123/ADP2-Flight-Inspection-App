@@ -1,7 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
-using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Windows;
 
 namespace FIApp
 {
@@ -28,6 +29,9 @@ namespace FIApp
             }
         }
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void Detect();
+
         public void LoadPlugin(string pluginPath)
         {
             if (!File.Exists(pluginPath))
@@ -38,23 +42,38 @@ namespace FIApp
             Console.WriteLine(String.Format("Loading {0}", pluginPath));
             try
             {
-                // Load DLL into memory
-                Assembly plugin = Assembly.LoadFrom(pluginPath);
+                IntPtr pDll = NativeMethods.LoadLibrary(pluginPath);
+                if (pDll == IntPtr.Zero)
+                {
+                    Console.WriteLine(String.Format("Failed to load DLL {0}", pluginPath));
+                    return;
+                }
 
-                // Get the type from the assembly
-                Type t = plugin.GetType(String.Format("{0}.{0}", Path.GetFileNameWithoutExtension(pluginPath)));
+                IntPtr pAddressOfFunctionToCall = NativeMethods.GetProcAddress(pDll, "Detect");
+                if (pAddressOfFunctionToCall == IntPtr.Zero)
+                {
+                    Console.WriteLine(String.Format("Could not find method Detect in DLL {0}", pluginPath));
+                    return;
+                }
 
-                // Get the detect method from the DLL (declare the method prototype)
-                MethodInfo DLLdetect = t.GetMethod("Detect", new Type[] { typeof(int[][]) });
+                Detect detect = (Detect)Marshal.GetDelegateForFunctionPointer(
+                    pAddressOfFunctionToCall, typeof(Detect));
 
-                // Create a new instance of the ChordFileGenerator type
-                object o = Activator.CreateInstance(t);
-                // DLLdetect.Invoke(o, model.csvData);
+                if (!File.Exists("reg_flight.csv") || !File.Exists("anomaly_flight.csv"))
+                {
+                    Console.WriteLine("Missing files");
+                    MessageBox.Show("Missing files", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                    return;
+                }
+                detect();
+                bool result = NativeMethods.FreeLibrary(pDll);
             }
-            catch (Exception exc)
+            catch (Exception e)
             {
-                Console.WriteLine(exc.Message);
-                return;
+                Console.WriteLine("Unable to load {0}.", pluginPath);
+                Console.WriteLine(e.Message.Substring(0,
+                                  e.Message.IndexOf(".") + 1));
             }
         }
 
