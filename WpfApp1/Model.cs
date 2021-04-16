@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Net.Sockets;
 using System.Threading;
-
+using System.Xml;
 
 namespace FIApp
 {
@@ -12,10 +12,14 @@ namespace FIApp
     {
 
         //CSV fields
-      //  private string csvPath;
-        private double[,] doubleProperties;
-        private SortedDictionary<int, string> data;
-        private int numberOfRows;
+        private SortedDictionary<int, string> dataForFlightGear; //save number of row and row's data as string
+        private int numberOfRows; //number of rows in csv file
+        private string csvPath; //csv path, from the user
+        private double[][] featuresData; //save features's data from csv file
+        private SortedDictionary<string, List<double>> csvData; //save all csv data
+
+        //xml
+        List<string> features; //save features's names
 
         //client fields
         private TcpClient client;
@@ -24,10 +28,10 @@ namespace FIApp
         // start method fields
         private int sleep; // = 100/speed
         private int currentRow; // in csv file
-
+        public int maxTime_s;
 
         //time and speed propeties
-        private int currentTime; // in seconds: hours = currentTime/3600, minutes = currentTime/60, seconds = currentTime%60
+        private int currentTime; // in seconds; hours = currentTime/3600, minutes = currentTime/60, seconds = currentTime%60
         public int CurrentTime
         {
             get { return currentTime; }
@@ -57,6 +61,11 @@ namespace FIApp
             }
         }
 
+        public string CsvPath
+        {
+            set { csvPath = value; }
+        }
+
         //event
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
@@ -69,18 +78,14 @@ namespace FIApp
         // CTOR
         public Model()
         {
-         //   csvPath = null;
-            speed = 1;
+            csvPath = "reg_flight.csv"; //default
+            speed = 1; //normal speed
             currentTime = 0;
             currentRow = 0;
             sleep = (int)(100 / speed);
             stop = false;
-            csvParser(); //##
         }
-        public double[,] getProperties()
-        {
-            return doubleProperties;
-        }
+
         //other properties and fields
         private double aileron;
         public double Aileron
@@ -97,76 +102,12 @@ namespace FIApp
         {
             get { return rudder; }
         }
-        private double flaps;
-        public double Flaps
-        {
-            get { return flaps; }
-        }
-        private double slats;
-        public double Slats
-        {
-            get { return slats; }
-        }
-        private double speedBrake;
-        public double SpeedBrake
-        {
-            get { return speedBrake; }
-        }
         private double throttle0;
         public double Throttle0
         {
             get { return throttle0; }
         }
-        private double throttle1;
-        public double Throttle1
-        {
-            get { return throttle1; }
-        }
-        private double enginePump0;
-        public double EnginePump0
-        {
-            get { return enginePump0; }
-        }
-        private double enginePump1;
-        public double EnginePump1
-        {
-            get { return enginePump1; }
-        }
-        private double electricPump0;
-        public double ElectricPump0
-        {
-            get { return electricPump0; }
-        }
-        private double electricPump1;
-        public double ElectricPump1
-        {
-            get { return electricPump1; }
-        }
-        private double externalPower;
-        public double ExternalPower
-        {
-            get { return externalPower; }
-        }
-        private double apuGenerator;
-        public double ApuGenerator
-        {
-            get { return apuGenerator; }
-        }
-        private double latitudeDeg;
-        public double LatitudeDeg
-        {
-            get { return latitudeDeg; }
-        }
-        private double longitudeDeg;
-        public double LongitudeDeg
-        {
-            get { return longitudeDeg; }
-        }
-        private double altitudeFd;
-        public double AltitudeFd
-        {
-            get { return altitudeFd; }
-        }
+
         private double rollDeg;
         public double RollDeg
         {
@@ -192,152 +133,137 @@ namespace FIApp
         {
             get { return airspeedKt; }
         }
-        private double glideslope;
-        public double Glideslope
-        {
-            get { return glideslope; }
-        }
-        private double verticalSpeedFps;
-        public double VerticalSpeedFps
-        {
-            get { return verticalSpeedFps; }
-        }
-        private double airspeedIndicatorIndicatedSpeedKt;
-        public double AirspeedIndicatorIndicatedSpeedKt
-        {
-            get { return airspeedIndicatorIndicatedSpeedKt; }
-        }
         private double altimeter_indicated_altitude_ft;
         public double Altimeter_indicated_altitude_ft
         {
             get { return altimeter_indicated_altitude_ft; }
         }
-        private double altimeter_pressure_alt_ft;
-        public double Altimeter_pressure_alt_ft
-        {
-            get { return altimeter_pressure_alt_ft; }
-        }
-        private double attitude_indicator_indicated_pitch_deg;
-        public double Attitude_indicator_indicated_pitch_deg
-        {
-            get { return attitude_indicator_indicated_pitch_deg; }
-        }
-        private double attitude_indicator_indicated_roll_deg;
-        public double Attitude_indicator_indicated_roll_deg
-        {
-            get { return attitude_indicator_indicated_roll_deg; }
-        }
-        private double attitude_indicator_internal_pitch_deg;
-        public double Attitude_indicator_internal_pitch_deg
-        {
-            get { return attitude_indicator_internal_pitch_deg; }
-        }
-        private double attitude_indicator_internal_roll_deg;
-        public double Attitude_indicator_internal_roll_deg
-        {
-            get { return attitude_indicator_internal_roll_deg; }
-        }
-        private double encoder_indicated_altitude_ft;
-        public double Encoder_indicated_altitude_ft
-        {
-            get { return encoder_indicated_altitude_ft; }
-        }
-        private double encoder_pressure_alt_ft;
-        public double Encoder_pressure_alt_ft
-        {
-            get { return encoder_pressure_alt_ft; }
-        }
-        private double gps_indicated_altitude_ft;
-        public double Gps_indicated_altitude_ft
-        {
-            get { return gps_indicated_altitude_ft; }
-        }
-        private double gps_indicated_ground_speed_kt;
-        public double Gps_indicated_ground_speed_kt
-        {
-            get { return gps_indicated_ground_speed_kt; }
-        }
-        private double gps_indicated_vertical_speed;
-        public double Gps_indicated_vertical_speed
-        {
-            get { return gps_indicated_vertical_speed; }
-        }
-        private double indicated_heading_deg;
-        public double Indicated_heading_deg
-        {
-            get { return indicated_heading_deg; }
-        }
-        private double magnetic_compass_indicated_heading_deg;
-        public double Magnetic_compass_indicated_heading_deg
-        {
-            get { return magnetic_compass_indicated_heading_deg; }
-        }
-        private double slip_skid_ball_indicated_slip_skid;
-        public double Slip_skid_ball_indicated_slip_skid
-        {
-            get { return slip_skid_ball_indicated_slip_skid; }
-        }
+        //properties names for csvData and features list
+        private string aileronName = null;
+        private string rudderName = null;
+        private string throttleName = null;
+        private string elevatorName = null;
+        private string altimeterName = null;
+        private string airspeedName = null;
+        private string headingName = null;
+        private string yawName = null;
+        private string rollName = null;
+        private string pitchName = null;
 
-        private double turn_indicator_indicated_turn_rate;
-        public double Turn_indicator_indicated_turn_rate
+        //xml reader
+        private void xmlParser()
         {
-            get { return turn_indicator_indicated_turn_rate; }
+            features = new List<string>();
+            string file = Properties.Resources.playback_small;
+            bool input = false;
+            int idx = 0;
+            using (XmlReader xmlReader = XmlReader.Create(new StringReader(file)))
+            {
+                while (xmlReader.Read() && !input)
+                {
+                    if (xmlReader.IsStartElement())
+                    {
+                        switch (xmlReader.Name.ToString())
+                        {
+                            case "input":
+                                input = true;
+                                break;
+                            case "name":
+                                string name = xmlReader.ReadString();
+                                string featureName = String.Concat(Convert.ToString(idx++), "_", name);
+                                features.Add(featureName);
+                                switch (name)
+                                {
+                                    case "throttle":
+                                        if (throttleName == null)
+                                            throttleName = featureName;
+                                        break;
+                                    case "aileron":
+                                        aileronName = featureName;
+                                        break;
+                                    case "elevator":
+                                        elevatorName = featureName;
+                                        break;
+                                    case "altimeter_indicated-altitude-ft":
+                                        altimeterName = featureName;
+                                        break;
+                                    case "heading-deg":
+                                        headingName = featureName;
+                                        break;
+                                    case "airspeed-kt":
+                                        airspeedName = featureName;
+                                        break;
+                                    case "roll-deg":
+                                        rollName = featureName;
+                                        break;
+                                    case "pitch-deg":
+                                        pitchName = featureName;
+                                        break;
+                                    case "side-slip-deg":
+                                        yawName = featureName;
+                                        break;
+                                    case "rudder":
+                                        rudderName = featureName;
+                                        break;
+                                }
+                                break;
+                        }
+                    }
+                }
+            }
         }
-        private double vertical_speed_indicator_indicated_speed_fpm;
-        public double Vertical_speed_indicator_indicated_speed_fpm
-        {
-            get { return vertical_speed_indicator_indicated_speed_fpm; }
-        }
-        private double engine_rpm;
-        public double Engine_rpm
-        {
-            get { return engine_rpm; }
-        }
-
 
         // CSV parser
-
         private void csvParser()
         {
+            xmlParser();
             /**
-             * the key is the number of row in file (currentRow)
+             * dataForFlightGear: the key is the number of row in file (currentRow)
              * the value is row itself (the properties's values seperated by ',' as one string)
              */
-            data = new SortedDictionary<int, string>();
-            StreamReader reader = new StreamReader("C:\\Users\\taco9\\Desktop\\reg_flight.csv"); // #### change to csvPath or reg_flight.csv!!!!!!!!!!/
+            dataForFlightGear = new SortedDictionary<int, string>();
+            csvData = new SortedDictionary<string, List<double>>();
+            StreamReader reader = new StreamReader(csvPath);
             string line;
             int row = 0;
             numberOfRows = 0;
             while ((line = reader.ReadLine()) != null)
             {
-                data[row++] = line + Environment.NewLine;
+                dataForFlightGear[row++] = line + Environment.NewLine;
             }
             reader.Close();
-            //42 properties: 40 float, 2 double
-            /**
-             * save the properties's values in an multidimnesional array
-             * to find a property in a certain csv row: properties[row][property-index]
-             * properties 15 and 16 are doubles and stored in different array
-             */
             numberOfRows = row - 1;
-            doubleProperties = new double[row, 42];
+            for (int j = 0; j < features.Count; j++)
+            {
+                csvData[features[j]] = new List<double>();
+            }
             for (int i = 0; i < row; i++)
             {
-                string[] properties = data[i].Split(',');
-                int newj = 0; //index used by float properties, needed because properties 15 and 16 are in different array
+                string[] properties = dataForFlightGear[i].Split(',');
                 for (int j = 0; j < properties.Length; j++)
                 {
-                    doubleProperties[i, newj++] = double.Parse(properties[j]);
+                    csvData[features[j]].Add(double.Parse(properties[j]));
                 }
             }
-            
-        }
+            maxTime_s = numberOfRows / 10;
 
+            featuresData = new double[10][];
+            featuresData[0] = csvData[aileronName].ToArray(); //0 = aileron
+            featuresData[1] = csvData[elevatorName].ToArray(); //1 = elevator
+            featuresData[2] = csvData[rudderName].ToArray(); // 2 = rudder
+            featuresData[3] = csvData[throttleName].ToArray(); // 3 = throttle
+            featuresData[4] = csvData[rollName].ToArray(); // 4 = roll
+            featuresData[5] = csvData[pitchName].ToArray(); // 5 = pitch
+            featuresData[6] = csvData[headingName].ToArray(); // 6 = heading
+            featuresData[7] = csvData[yawName].ToArray(); // 7 = yaw
+            featuresData[8] = csvData[airspeedName].ToArray(); // 8 = airspeed
+            featuresData[9] = csvData[altimeterName].ToArray(); // 9 = altimeter
+        }
 
         //client-server
         public void connect()
         {
-//            csvParser(); //##
+            csvParser(); //## HERE
             client = new TcpClient("localhost", 5400);
         }
 
@@ -353,12 +279,12 @@ namespace FIApp
                     {
                         continue;
                     }
-                    writer.Write(data[currentRow]);
+                    writer.Write(dataForFlightGear[currentRow]);
                     writer.Flush();
                     updateProperties();
                     currentRow++;
                     currentTime = currentRow / 10; // one second contains 10 rows
-                    NotifyPropertyChanged("CurrentTime"); //added
+                    NotifyPropertyChanged("CurrentTime"); //check if only when CurrentTime acctually changes
                     Thread.Sleep(sleep);
                 }
             }).Start();
@@ -375,49 +301,28 @@ namespace FIApp
         private void updateProperties()
         {
             int i = 0;
-            aileron = doubleProperties[currentRow, i++]; //0
-            elevator = doubleProperties[currentRow, i++];
-            rudder = doubleProperties[currentRow, i++];
-            flaps = doubleProperties[currentRow, i++];
-            slats = doubleProperties[currentRow, i++];
-            speedBrake = doubleProperties[currentRow, i++]; //5
-            throttle0 = doubleProperties[currentRow, i++];
-            throttle1 = doubleProperties[currentRow, i++];
-            enginePump0 = doubleProperties[currentRow, i++];
-            enginePump1 = doubleProperties[currentRow, i++];
-            electricPump0 = doubleProperties[currentRow, i++]; //10
-            electricPump1 = doubleProperties[currentRow, i++];
-            externalPower = doubleProperties[currentRow, i++];
-            apuGenerator = doubleProperties[currentRow, i++];
-            latitudeDeg = doubleProperties[currentRow, i++];
-            longitudeDeg = doubleProperties[currentRow, i++]; //15
-            altitudeFd = doubleProperties[currentRow, i++]; 
-            rollDeg = doubleProperties[currentRow, i++];
-            pitchDeg = doubleProperties[currentRow, i++];
-            headingDeg = doubleProperties[currentRow, i++];
-            yaw = doubleProperties[currentRow, i++]; //20
-            airspeedKt = doubleProperties[currentRow, i++];
-            glideslope = doubleProperties[currentRow, i++]; 
-            verticalSpeedFps = doubleProperties[currentRow, i++];
-            airspeedIndicatorIndicatedSpeedKt = doubleProperties[currentRow, i++];
-            altimeter_indicated_altitude_ft = doubleProperties[currentRow, i++]; // 25
-            altimeter_pressure_alt_ft = doubleProperties[currentRow, i++];
-            attitude_indicator_indicated_pitch_deg = doubleProperties[currentRow, i++];
-            attitude_indicator_indicated_roll_deg = doubleProperties[currentRow, i++];
-            attitude_indicator_internal_pitch_deg = doubleProperties[currentRow, i++];
-            attitude_indicator_internal_roll_deg = doubleProperties[currentRow, i++]; //30
-            encoder_indicated_altitude_ft = doubleProperties[currentRow, i++];
-            encoder_pressure_alt_ft = doubleProperties[currentRow, i++];
-            gps_indicated_altitude_ft = doubleProperties[currentRow, i++];
-            gps_indicated_ground_speed_kt = doubleProperties[currentRow, i++];
-            gps_indicated_vertical_speed = doubleProperties[currentRow, i++]; //35
-            indicated_heading_deg = doubleProperties[currentRow, i++];
-            magnetic_compass_indicated_heading_deg = doubleProperties[currentRow, i++];
-            slip_skid_ball_indicated_slip_skid = doubleProperties[currentRow, i++];
-            turn_indicator_indicated_turn_rate = doubleProperties[currentRow, i++];
-            vertical_speed_indicator_indicated_speed_fpm = doubleProperties[currentRow, i++]; //40
-            engine_rpm = doubleProperties[currentRow, i++];
+            aileron = featuresData[i++][currentRow];
+            elevator = featuresData[i++][currentRow];
+            rudder = featuresData[i++][currentRow];
+            throttle0 = featuresData[i++][currentRow];
+            rollDeg = featuresData[i++][currentRow];
+            pitchDeg = featuresData[i++][currentRow];
+            headingDeg = featuresData[i++][currentRow];
+            yaw = featuresData[i++][currentRow];
+            airspeedKt = featuresData[i++][currentRow];
+            altimeter_indicated_altitude_ft = featuresData[i++][currentRow];
         }
+
+        public List<double> getDataByFeatureName(string feature)
+        {
+            if (feature == null)
+            {
+                return new List<double> { };
+            }
+
+            return csvData[feature];
+        }
+
 
         /**
          * 
@@ -426,15 +331,14 @@ namespace FIApp
          */
         public void helper()
         {
+            csvParser();
+            Console.WriteLine("helper-method");
             new Thread(delegate ()
             {
-                //Console.WriteLine("START");
                 while (!stop)
                 {
                     updateProperties();
                     currentRow++;
-                 //   Console.WriteLine(currentRow);
-                 //   Console.WriteLine(currentTime);
                     currentTime = currentRow / 10;
                     NotifyPropertyChanged("CurrentTime");
                     if (currentRow == 2000)
@@ -443,7 +347,6 @@ namespace FIApp
                     }
                     Thread.Sleep(10);
                 }
-                //Console.WriteLine("finish");
             }).Start();
         }
     }
