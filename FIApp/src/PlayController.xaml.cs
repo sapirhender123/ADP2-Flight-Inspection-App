@@ -1,62 +1,59 @@
-﻿using FlightGearSimulator.src;
-using System;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace FlightGearSimulator.User_Controls
+namespace FIApp.Views
 {
     /// <summary>
-    /// Interaction logic for PlayController.xaml
+    /// Interaction logic for PlayControldler.xaml
     /// </summary>
     public partial class PlayController : UserControl
     {
         readonly PlayerViewModel vm;
-        private float prev_speed = 1;
+        private decimal prev_speed = 1;
+        private bool playing = false;
         public PlayController()
         {
             InitializeComponent();
-            vm = new PlayerViewModel(new FlightModel()); // TODO: (new TCPConnection())
+            vm = new PlayerViewModel(model); // TODO: (new TCPConnection())
             vm.FG_Speed = 0;
             this.DataContext = vm;
         }
 
         private void PlayController_Play(object sender, MouseButtonEventArgs e)
         {
-            if (vm.FG_Speed == 0)
+            if (!playing)
             {
                 vm.FG_Speed = prev_speed;
+                playing = true;
             }
-        }
+        } 
 
         private void PlayController_FastFordward(object sender, MouseButtonEventArgs e)
         {
-            if (vm.FG_Speed == 0)
+            if (!playing)
             {
-                prev_speed += 0.1f;
+                prev_speed += (decimal)0.1F;
             }
             else
             {
-                vm.FG_Speed += 0.1f;
+                vm.FG_Speed += (decimal)0.1F;
             }
-            Console.WriteLine(vm.model.Speed);
         }
 
         private void PlayController_MoveBack(object sender, MouseButtonEventArgs e)
         {
-            if (vm.FG_Speed == 0)
+            if (!playing)
             {
-                prev_speed -= 0.1f;
-                if (prev_speed < 0)
+                if (prev_speed >= (decimal)0.1F)
                 {
-                    prev_speed = 0;
+                    prev_speed -= (decimal)0.1F;
                 }
             }
-            else if (vm.FG_Speed > 0)
+            else
             {
-                vm.FG_Speed -= 0.1f;
-                if (vm.FG_Speed < 0)
+                if (vm.FG_Speed >= (decimal)0.1F)
                 {
-                    vm.FG_Speed = 0;
+                    vm.FG_Speed -= (decimal)0.1F;
                 }
             }
         }
@@ -65,6 +62,7 @@ namespace FlightGearSimulator.User_Controls
         {
             prev_speed = vm.FG_Speed;
             vm.FG_Speed = 0;
+            playing = false;
         }
 
         private void PlayController_Stop(object sender, MouseButtonEventArgs e)
@@ -72,6 +70,7 @@ namespace FlightGearSimulator.User_Controls
             prev_speed = 1;
             vm.FG_CurrentTime = 0;
             vm.FG_Speed = 0;
+            playing = false;
         }
     }
 }

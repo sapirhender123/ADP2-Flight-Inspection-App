@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FIApp", "FIApp\FIApp.csproj", "{91251EF9-F997-48E0-A088-17E3C78FEFA9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91251EF9-F997-48E0-A088-17E3C78FEFA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91251EF9-F997-48E0-A088-17E3C78FEFA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91251EF9-F997-48E0-A088-17E3C78FEFA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91251EF9-F997-48E0-A088-17E3C78FEFA9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {82EE6F8E-4081-46D3-A037-1ABFA1A61EBF}
+	EndGlobalSection
+EndGlobal

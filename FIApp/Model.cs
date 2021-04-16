@@ -45,8 +45,8 @@ namespace FIApp
                 NotifyPropertyChanged("CurrentTime");
             }
         }
-        private float speed;
-        public float Speed
+        private decimal speed;
+        public decimal Speed
         {
             get { return speed; }
             set
@@ -59,7 +59,7 @@ namespace FIApp
                 NotifyPropertyChanged("Speed");
             }
         }
-        
+
         public string CsvPath
         {
             set { csvPath = value; }
@@ -70,7 +70,9 @@ namespace FIApp
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
+            {
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propName));
+            }
         }
 
 
@@ -78,10 +80,10 @@ namespace FIApp
         public Model()
         {
             csvPath = "reg_flight.csv"; //default
-            speed = 1; //normal speed
+            speed = 0; //normal speed
             currentTime = 0;
             currentRow = 0;
-            sleep = (int)(100 / speed);
+            sleep = 0;
             stop = false;
         }
 
@@ -106,7 +108,7 @@ namespace FIApp
         {
             get { return throttle0; }
         }
- 
+
         private double rollDeg;
         public double RollDeg
         {
@@ -281,15 +283,21 @@ namespace FIApp
                     writer.Write(dataForFlightGear[currentRow]);
                     writer.Flush();
                     updateProperties();
+
                     currentRow++;
                     currentTime = currentRow / 10; // one second contains 10 rows
+                    if (currentTime >= maxTime_s)
+                    {
+                        currentTime = maxTime_s;
+                        NotifyPropertyChanged("CurrentTime");
+                        return;
+                    }
+
                     NotifyPropertyChanged("CurrentTime"); //check if only when CurrentTime acctually changes
                     Thread.Sleep(sleep);
                 }
             }).Start();
-
         }
-
 
         public void disconnect()
         {
@@ -322,7 +330,6 @@ namespace FIApp
             return csvData[feature];
         }
 
-
         /**
          * 
          * Helper Method can be deleted before submitting
@@ -334,17 +341,28 @@ namespace FIApp
             Console.WriteLine("helper-method");
             new Thread(delegate ()
             {
-                while (!stop)
+                while (true)
                 {
-                    updateProperties();
-                    currentRow++;
-                    currentTime = currentRow / 10;
-                    NotifyPropertyChanged("CurrentTime");
-                    if (currentRow == 2000)
+                    if (Speed == 0)
                     {
-                        stop = true;
+                        continue;
                     }
-                    Thread.Sleep(10);
+
+                    updateProperties();
+
+                    currentRow++;
+                    currentTime = currentRow / 10; // one second contains 10 rows
+
+                    if (currentTime >= maxTime_s)
+                    {
+                        currentTime = maxTime_s;
+                        NotifyPropertyChanged("CurrentTime");
+                        return;
+                    }
+
+                    NotifyPropertyChanged("CurrentTime");
+                    Console.WriteLine(currentTime);
+                    Thread.Sleep(sleep);
                 }
             }).Start();
         }

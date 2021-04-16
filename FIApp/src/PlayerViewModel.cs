@@ -1,13 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace FlightGearSimulator.src
+namespace FIApp
 {
     class PlayerViewModel : INotifyPropertyChanged
     {
-        public FlightModel model;
+        public Model model;
 
-        public PlayerViewModel(FlightModel model)
+        public PlayerViewModel(Model model)
         {
             this.model = model;
             this.model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
@@ -28,7 +28,7 @@ namespace FlightGearSimulator.src
         }
 
         // Properties
-        public float FG_Speed
+        public decimal FG_Speed
         {
             get { return model.Speed; }
             set {
@@ -59,6 +59,15 @@ namespace FlightGearSimulator.src
         {
             get {
                 return timeString;
+            }
+        }
+
+        // Slider stuff :-)
+        public int Maximum
+        {
+            get
+            {
+                return model.maxTime_s;
             }
         }
     }
