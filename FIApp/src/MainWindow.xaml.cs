@@ -39,3 +39,19 @@ namespace FIApp.Views
         Model model = Globals.model;
     }
 }
+
+namespace FIApp.Views
+{
+    public partial class FeatureList: UserControl
+    {
+        Model model = Globals.model;
+    }
+}
+
+namespace FIApp.Views
+{
+    public partial class Graphs: UserControl
+    {
+        Model model = Globals.model;
+    }
+}

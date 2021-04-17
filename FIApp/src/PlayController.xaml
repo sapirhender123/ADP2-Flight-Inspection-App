@@ -3,37 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" d:DesignWidth="800" Height="175">
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="100">
     <!-- Images, slider, labels and binding -->
     <Grid>
-        <!-- change the time when the slider is moving -->
-
-        <Slider Value="{Binding FG_CurrentTime}" HorizontalAlignment="Left" Height="20" Margin="30,135,0,0" VerticalAlignment="Top" Width="730"
-        TickPlacement="BottomRight" TickFrequency="1" Maximum="{Binding Maximum, Mode=OneTime}" IsSnapToTickEnabled="True"/>
-        <Image MouseDown="PlayController_Play" Margin="151,70,588,45">
-            <Image.Source>
-                <BitmapImage DecodePixelWidth="300" UriSource="resources\Play.png" />
-            </Image.Source>
-        </Image>
-        <Image MouseDown="PlayController_FastFordward" Margin="268,80,479,45">
-            <Image.Source>
-                <BitmapImage DecodePixelWidth="300" UriSource="resources\MoveFastButton.png" />
-            </Image.Source>
-        </Image>
-        <Image MouseDown="PlayController_MoveBack" Margin="41,80,704,45" Source="resources\MoveBackButton.png"/>
-        <Image MouseDown="PlayController_Pause" Margin="96,80,649,45">
-            <Image.Source>
-                <BitmapImage DecodePixelWidth="300" UriSource="resources\Pause.png" />
-            </Image.Source>
-        </Image>
-        <Image MouseDown="PlayController_Stop" Margin="211,80,532,45">
-            <Image.Source>
-                <BitmapImage DecodePixelWidth="300" UriSource="resources\StopButton.png" />
-            </Image.Source>
-        </Image>
-        <Label Content="Play Speed: " HorizontalAlignment="Left" Margin="412,95,0,0" VerticalAlignment="Top" Height="35" Width="120" FontSize ="20" FontFamily="Arial"/>
-        <Label Content="{Binding FG_Speed, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="{}{0:#,0.0}" HorizontalAlignment="Left" Margin="526,95,0,0" VerticalAlignment="Top" Height="35" Width="60" FontSize ="20" FontFamily="Arial"/>
-        <Label Content="Time: " HorizontalAlignment="Left" Margin="586,95,0,0" VerticalAlignment="Top" Height="35" Width="60" FontSize ="20" FontFamily="Arial"/>
-        <Label Content="{Binding FG_TimeString, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="646,95,0,0" VerticalAlignment="Top" Height="35" Width="144" FontSize ="20" FontFamily="Arial"/>
+        <Viewbox>
+            <Canvas Height="100" Width="800">
+                <!-- change the time when the slider is moving -->
+                <Slider Value="{Binding FG_CurrentTime}" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="780" TickPlacement="BottomRight" TickFrequency="1" Maximum="{Binding Maximum, Mode=OneTime}" IsSnapToTickEnabled="True" Canvas.Left="10" Canvas.Top="70"/>
+                <Image MouseDown="PlayController_Play" RenderTransformOrigin="0.853,0.504" Canvas.Left="131" Height="66" Width="73">
+                    <Image.Source>
+                        <BitmapImage DecodePixelWidth="300" UriSource="resources\Play.png" />
+                    </Image.Source>
+                </Image>
+                <Image MouseDown="PlayController_FastFordward" RenderTransformOrigin="0.853,0.504" Canvas.Left="262" Canvas.Top="9" Height="55" Width="58">
+                    <Image.Source>
+                        <BitmapImage DecodePixelWidth="300" UriSource="resources\MoveFastButton.png" />
+                    </Image.Source>
+                </Image>
+                <Image MouseDown="PlayController_MoveBack" RenderTransformOrigin="0.853,0.504" Source="resources\MoveBackButton.png" Canvas.Left="14" Canvas.Top="9" Height="55" Width="57"/>
+                <Image MouseDown="PlayController_Pause" RenderTransformOrigin="0.853,0.504" Canvas.Left="76" Canvas.Top="9" Height="55" Width="55">
+                    <Image.Source>
+                        <BitmapImage DecodePixelWidth="300" UriSource="resources\Pause.png" />
+                    </Image.Source>
+                </Image>
+                <Image MouseDown="PlayController_Stop" RenderTransformOrigin="0.853,0.504" Canvas.Left="202" Canvas.Top="9" Height="55" Width="55">
+                    <Image.Source>
+                        <BitmapImage DecodePixelWidth="300" UriSource="resources\StopButton.png" />
+                    </Image.Source>
+                </Image>
+                <Label Content="Play Speed: " HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="145" FontSize ="25" FontFamily="Arial" Canvas.Left="335" Canvas.Top="25"/>
+                <Label Content="{Binding FG_Speed, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="{}{0:#,0.0}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="100" FontSize ="25" FontFamily="Arial" Canvas.Left="480" Canvas.Top="25"/>
+                <Label Content="Time: " HorizontalAlignment="Left" VerticalAlignment="Top" Height="41" Width="75" FontSize ="25" FontFamily="Arial" Canvas.Left="595" Canvas.Top="25" RenderTransformOrigin="-0.133,0.4"/>
+                <Label Content="{Binding FG_TimeString, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="41" Width="115" FontSize ="25" FontFamily="Arial" RenderTransformOrigin="0.746,0.623" Canvas.Left="670" Canvas.Top="25"/>
+            </Canvas>
+        </Viewbox>
     </Grid>
 </UserControl>

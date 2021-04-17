@@ -18,7 +18,7 @@ namespace FIApp
         private SortedDictionary<string, List<double>> csvData; //save all csv data
 
         //xml
-        List<string> features; //save features's names
+        public List<string> features; //save features's names
 
         //client fields
         private TcpClient client;
@@ -85,9 +85,24 @@ namespace FIApp
             currentRow = 0;
             sleep = 0;
             stop = false;
+            features = new List<string>();
         }
 
         //other properties and fields
+        string currentFeature;
+        public string CurrentFeature
+        {
+            set
+            {
+                this.currentFeature = value;
+                NotifyPropertyChanged("CurrentFeature");
+            }
+            get
+            {
+                return this.currentFeature;
+            }
+        }
+
         private double aileron;
         public double Aileron
         {
@@ -322,7 +337,7 @@ namespace FIApp
 
         public List<double> getDataByFeatureName(string feature)
         {
-            if (feature == null)
+            if (feature == null || !csvData.ContainsKey(feature))
             {
                 return new List<double> { };
             }
