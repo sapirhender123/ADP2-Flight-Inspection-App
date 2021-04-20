@@ -45,6 +45,7 @@ namespace FIApp
                 NotifyPropertyChanged("CurrentTime");
             }
         }
+
         private decimal speed;
         public decimal Speed
         {
@@ -298,9 +299,9 @@ namespace FIApp
                     writer.Write(dataForFlightGear[currentRow]);
                     writer.Flush();
                     updateProperties();
-
                     currentRow++;
                     currentTime = currentRow / 10; // one second contains 10 rows
+                    //check later
                     if (currentTime >= maxTime_s)
                     {
                         currentTime = maxTime_s;
@@ -312,6 +313,7 @@ namespace FIApp
                     Thread.Sleep(sleep);
                 }
             }).Start();
+
         }
 
         public void disconnect()
@@ -337,6 +339,8 @@ namespace FIApp
 
         public List<double> getDataByFeatureName(string feature)
         {
+
+            //check later
             if (feature == null || !csvData.ContainsKey(feature))
             {
                 return new List<double> { };
@@ -344,6 +348,7 @@ namespace FIApp
 
             return csvData[feature];
         }
+
 
         /**
          * 
@@ -356,6 +361,21 @@ namespace FIApp
             Console.WriteLine("helper-method");
             new Thread(delegate ()
             {
+
+/**
+                while (!stop)
+                {
+                    updateProperties();
+                    currentRow++;
+                    currentTime = currentRow / 10;
+                    NotifyPropertyChanged("CurrentTime");
+                    if (currentRow == 2000)
+                    {
+                        stop = true;
+                    }
+                    Thread.Sleep(10);
+*/
+
                 while (true)
                 {
                     if (Speed == 0)
@@ -383,3 +403,4 @@ namespace FIApp
         }
     }
 }
+
