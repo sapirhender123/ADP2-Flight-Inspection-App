@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace FIApp
@@ -12,7 +8,7 @@ namespace FIApp
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            
+
             double newVal = (double)value;
             int newParameter = Int32.Parse((string)parameter);
             if (newVal < 0)

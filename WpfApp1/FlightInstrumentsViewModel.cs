@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 
 namespace FIApp.ViewModels
@@ -15,13 +11,13 @@ namespace FIApp.ViewModels
             this.model = model;
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                    NotifyPropertyChanged("VM_Heading");
-                    NotifyPropertyChanged("VM_Altimeter");
-                    NotifyPropertyChanged("VM_Airspeed");
-                    NotifyPropertyChanged("VM_Yaw");
-                    NotifyPropertyChanged("VM_Roll");
-                    NotifyPropertyChanged("VM_Pitch");
-                
+                NotifyPropertyChanged("VM_Heading");
+                NotifyPropertyChanged("VM_Altimeter");
+                NotifyPropertyChanged("VM_Airspeed");
+                NotifyPropertyChanged("VM_Yaw");
+                NotifyPropertyChanged("VM_Roll");
+                NotifyPropertyChanged("VM_Pitch");
+
             };
         }
 

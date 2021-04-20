@@ -1,5 +1,4 @@
-﻿
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using FIApp.ViewModels;
 
 namespace FIApp.Views
@@ -14,12 +13,8 @@ namespace FIApp.Views
         public FlightInstrumentsView()
         {
             InitializeComponent();
-            Model m = new Model();
-            vm = new FlightInstrumentsViewModel(m);
+            vm = new FlightInstrumentsViewModel(model);
             DataContext = vm;
-        //    m.connect();
-          //  m.start();
-            m.helper();
         }
     }
 }

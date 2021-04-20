@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace FIApp
@@ -17,7 +13,7 @@ namespace FIApp
 
             if (newVal > 180)
             {
-                return (0.9*newParameter) * 180;
+                return (0.9 * newParameter) * 180;
             }
             if (newVal < -180)
             {
