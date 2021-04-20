@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 
 
@@ -17,6 +13,7 @@ namespace FIApp.ViewModels
             this.model = model;
             this.model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
+                //notify the relevant properties have changed
                 NotifyPropertyChanged("VM_Aileron");
                 NotifyPropertyChanged("VM_Elevator");
                 NotifyPropertyChanged("VM_Rudder");

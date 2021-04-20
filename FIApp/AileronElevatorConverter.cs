@@ -8,6 +8,12 @@ using System.Windows.Data;
 
 namespace FIApp
 {
+    /**
+    * converter for aileron and elevator binding.
+    * aileron and elevator normal values are between -1 and 1.
+    * The conversion increases the range in order to emphasize the joystick's movement. 
+    */
+
     class AileronElevatorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
