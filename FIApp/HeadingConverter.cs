@@ -4,6 +4,7 @@ using System.Windows.Data;
 
 namespace FIApp
 {
+    // converter for heading binding: changes the spin direction 
     class HeadingConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

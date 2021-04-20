@@ -11,6 +11,7 @@ namespace FIApp.ViewModels
             this.model = model;
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
+                //notify the relevant properties changed
                 NotifyPropertyChanged("VM_Heading");
                 NotifyPropertyChanged("VM_Altimeter");
                 NotifyPropertyChanged("VM_Airspeed");
@@ -29,7 +30,7 @@ namespace FIApp.ViewModels
         }
 
         //properties
-        public double VM_Altimeter//////change name in model
+        public double VM_Altimeter
         {
             get { return model.Altimeter_indicated_altitude_ft; }
         }
@@ -39,7 +40,6 @@ namespace FIApp.ViewModels
             get { return model.AirspeedKt; }
         }
 
-        //direction
         public double VM_Heading
         {
             get { return model.HeadingDeg; }

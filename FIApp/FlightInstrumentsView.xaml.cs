@@ -3,9 +3,7 @@ using FIApp.ViewModels;
 
 namespace FIApp.Views
 {
-    /// <summary>
-    /// Interaction logic for FlightInstrumentsView.xaml
-    /// </summary>
+
     public partial class FlightInstrumentsView : UserControl
     {
         readonly FlightInstrumentsViewModel vm;
