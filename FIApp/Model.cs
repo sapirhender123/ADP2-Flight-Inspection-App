@@ -10,7 +10,6 @@ namespace FIApp
 {
     public class Model : INotifyPropertyChanged
     {
-
         //CSV fields
         private SortedDictionary<int, string> dataForFlightGear; //save number of row and row's data as string
         private int numberOfRows; //number of rows in csv file
@@ -19,7 +18,7 @@ namespace FIApp
         private SortedDictionary<string, List<double>> csvData; //save all csv data
 
         //xml
-        List<string> features; //save features's names
+        public List<string> features; //save features's names
 
         //client fields
         private TcpClient client;
@@ -46,8 +45,9 @@ namespace FIApp
                 NotifyPropertyChanged("CurrentTime");
             }
         }
-        private float speed;
-        public float Speed
+
+        private decimal speed;
+        public decimal Speed
         {
             get { return speed; }
             set
@@ -60,7 +60,7 @@ namespace FIApp
                 NotifyPropertyChanged("Speed");
             }
         }
-        
+
         public string CsvPath
         {
             set { csvPath = value; }
@@ -71,7 +71,9 @@ namespace FIApp
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
+            {
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propName));
+            }
         }
 
 
@@ -79,14 +81,29 @@ namespace FIApp
         public Model()
         {
             csvPath = "reg_flight.csv"; //default
-            speed = 1; //normal speed
+            speed = 0; //normal speed
             currentTime = 0;
             currentRow = 0;
-            sleep = (int)(100 / speed);
+            sleep = 0;
             stop = false;
+            features = new List<string>();
         }
 
         //other properties and fields
+        string currentFeature;
+        public string CurrentFeature
+        {
+            set
+            {
+                this.currentFeature = value;
+                NotifyPropertyChanged("CurrentFeature");
+            }
+            get
+            {
+                return this.currentFeature;
+            }
+        }
+
         private double aileron;
         public double Aileron
         {
@@ -107,7 +124,7 @@ namespace FIApp
         {
             get { return throttle0; }
         }
- 
+
         private double rollDeg;
         public double RollDeg
         {
@@ -284,13 +301,20 @@ namespace FIApp
                     updateProperties();
                     currentRow++;
                     currentTime = currentRow / 10; // one second contains 10 rows
+                    //check later
+                    if (currentTime >= maxTime_s)
+                    {
+                        currentTime = maxTime_s;
+                        NotifyPropertyChanged("CurrentTime");
+                        return;
+                    }
+
                     NotifyPropertyChanged("CurrentTime"); //check if only when CurrentTime acctually changes
                     Thread.Sleep(sleep);
                 }
             }).Start();
 
         }
-
 
         public void disconnect()
         {
@@ -315,7 +339,9 @@ namespace FIApp
 
         public List<double> getDataByFeatureName(string feature)
         {
-            if (feature == null)
+
+            //check later
+            if (feature == null || !csvData.ContainsKey(feature))
             {
                 return new List<double> { };
             }
@@ -335,6 +361,8 @@ namespace FIApp
             Console.WriteLine("helper-method");
             new Thread(delegate ()
             {
+
+/**
                 while (!stop)
                 {
                     updateProperties();
@@ -346,8 +374,33 @@ namespace FIApp
                         stop = true;
                     }
                     Thread.Sleep(10);
+*/
+
+                while (true)
+                {
+                    if (Speed == 0)
+                    {
+                        continue;
+                    }
+
+                    updateProperties();
+
+                    currentRow++;
+                    currentTime = currentRow / 10; // one second contains 10 rows
+
+                    if (currentTime >= maxTime_s)
+                    {
+                        currentTime = maxTime_s;
+                        NotifyPropertyChanged("CurrentTime");
+                        return;
+                    }
+
+                    NotifyPropertyChanged("CurrentTime");
+                    Console.WriteLine(currentTime);
+                    Thread.Sleep(sleep);
                 }
             }).Start();
         }
     }
 }
+
