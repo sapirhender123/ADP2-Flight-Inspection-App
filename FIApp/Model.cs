@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -54,7 +54,7 @@ namespace FIApp
             set
             {
                 speed = value;
-                if (speed != 0)
+                if (speed != 0) 
                 {
                     sleep = (int)(100 / speed);
                 }
@@ -161,7 +161,7 @@ namespace FIApp
         public Model()
         {
             csvPath = "anomaly_flight.csv"; //default
-            speed = 0;
+            speed = 0; 
             sleep = 0;
             currentTime = 0;
             currentRow = 0;
@@ -169,7 +169,7 @@ namespace FIApp
             features = new List<string>();
         }
 
-
+        
         // xml parser - extracts the propeties's names from the file and saves them in a list. 
         private void xmlParser()
         {
@@ -272,7 +272,7 @@ namespace FIApp
                 }
             }
             maxTime_s = numberOfRows / 10;
-
+            
             //save the values of some features in a jaggedArray - 
             //helps us to easily access a feature's single value.
             featuresData = new double[10][];
@@ -313,11 +313,11 @@ namespace FIApp
 
             return csvData[feature];
         }
-
+        
         //client-server
         public void connect()
         {
-            csvParser();
+            csvParser(); 
             client = new TcpClient("localhost", 5400);
         }
 
