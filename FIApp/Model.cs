@@ -10,15 +10,16 @@ namespace FIApp
 {
     public class Model : INotifyPropertyChanged
     {
-        //CSV fields
-        private SortedDictionary<int, string> dataForFlightGear; //save number of row and row's data as string
-        private int numberOfRows; //number of rows in csv file
-        private string csvPath; //csv path, from the user
-        private double[][] featuresData; //save features's data from csv file
-        private SortedDictionary<string, List<double>> csvData; //save all csv data
 
         //xml
         public List<string> features; //save features's names
+
+        //CSV fields
+        private string csvPath; //csv path, from the user
+        private SortedDictionary<int, string> dataForFlightGear; //save number of row and row's data as string
+        private SortedDictionary<string, List<double>> csvData; //maps each feature to a list of its values
+        private double[][] featuresData; //save some features's data in a different way
+        private int numberOfRows; //number of rows in csv file
 
         //client fields
         private TcpClient client;
@@ -29,7 +30,7 @@ namespace FIApp
         private int currentRow; // in csv file
         public int maxTime_s;
 
-        //time and speed propeties
+        //time and speed properties
         private int currentTime; // in seconds; hours = currentTime/3600, minutes = currentTime/60, seconds = currentTime%60
         public int CurrentTime
         {
@@ -53,7 +54,7 @@ namespace FIApp
             set
             {
                 speed = value;
-                if (speed != 0)
+                if (speed != 0) 
                 {
                     sleep = (int)(100 / speed);
                 }
@@ -66,28 +67,6 @@ namespace FIApp
             set { csvPath = value; }
         }
 
-        //event
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propName)
-        {
-            if (this.PropertyChanged != null)
-            {
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propName));
-            }
-        }
-
-
-        // CTOR
-        public Model()
-        {
-            csvPath = "reg_flight.csv"; //default
-            speed = 0; //normal speed
-            currentTime = 0;
-            currentRow = 0;
-            sleep = 0;
-            stop = false;
-            features = new List<string>();
-        }
 
         //other properties and fields
         string currentFeature;
@@ -155,6 +134,7 @@ namespace FIApp
         {
             get { return altimeter_indicated_altitude_ft; }
         }
+
         //properties names for csvData and features list
         private string aileronName = null;
         private string rudderName = null;
@@ -167,15 +147,39 @@ namespace FIApp
         private string rollName = null;
         private string pitchName = null;
 
-        //xml reader
+        //property changed event
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propName)
+        {
+            if (this.PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propName));
+            }
+        }
+
+        // CTOR
+        public Model()
+        {
+            csvPath = "anomaly_flight.csv"; //default
+            speed = 0; 
+            sleep = 0;
+            currentTime = 0;
+            currentRow = 0;
+            stop = false;
+            features = new List<string>();
+        }
+
+        
+        // xml parser - extracts the propeties's names from the file and saves them in a list. 
         private void xmlParser()
         {
-            features = new List<string>();
             string file = Properties.Resources.playback_small;
             bool input = false;
             int idx = 0;
             using (XmlReader xmlReader = XmlReader.Create(new StringReader(file)))
             {
+                // the features are written twice in the file- one time under the label "input" and the second under "output".
+                // we want to read the names only once.
                 while (xmlReader.Read() && !input)
                 {
                     if (xmlReader.IsStartElement())
@@ -187,8 +191,11 @@ namespace FIApp
                                 break;
                             case "name":
                                 string name = xmlReader.ReadString();
+                                //save each name with its index
                                 string featureName = String.Concat(Convert.ToString(idx++), "_", name);
                                 features.Add(featureName);
+                                // we save some of the features's "new" names(the original names combined with the indexs),
+                                // in order to access them later.
                                 switch (name)
                                 {
                                     case "throttle":
@@ -236,10 +243,9 @@ namespace FIApp
             xmlParser();
             /**
              * dataForFlightGear: the key is the number of row in file (currentRow)
-             * the value is row itself (the properties's values seperated by ',' as one string)
+             * the value is the row itself (the features's values seperated by ',' as one string)
              */
             dataForFlightGear = new SortedDictionary<int, string>();
-            csvData = new SortedDictionary<string, List<double>>();
             StreamReader reader = new StreamReader(csvPath);
             string line;
             int row = 0;
@@ -250,10 +256,13 @@ namespace FIApp
             }
             reader.Close();
             numberOfRows = row - 1;
+            csvData = new SortedDictionary<string, List<double>>();
+            //adds the features as keys to the dictionary
             for (int j = 0; j < features.Count; j++)
             {
                 csvData[features[j]] = new List<double>();
             }
+            //insert the features's values
             for (int i = 0; i < row; i++)
             {
                 string[] properties = dataForFlightGear[i].Split(',');
@@ -263,7 +272,9 @@ namespace FIApp
                 }
             }
             maxTime_s = numberOfRows / 10;
-
+            
+            //save the values of some features in a jaggedArray - 
+            //helps us to easily access a feature's single value.
             featuresData = new double[10][];
             featuresData[0] = csvData[aileronName].ToArray(); //0 = aileron
             featuresData[1] = csvData[elevatorName].ToArray(); //1 = elevator
@@ -277,51 +288,7 @@ namespace FIApp
             featuresData[9] = csvData[altimeterName].ToArray(); // 9 = altimeter
         }
 
-        //client-server
-        public void connect()
-        {
-            csvParser(); //## HERE
-            client = new TcpClient("localhost", 5400);
-        }
-
-        public void start()
-        {
-            Stream stream = client.GetStream();
-            StreamWriter writer = new StreamWriter(stream);
-            new Thread(delegate ()
-            {
-                while (!stop && currentRow <= numberOfRows)
-                {
-                    if (speed == 0)
-                    {
-                        continue;
-                    }
-                    writer.Write(dataForFlightGear[currentRow]);
-                    writer.Flush();
-                    updateProperties();
-                    currentRow++;
-                    currentTime = currentRow / 10; // one second contains 10 rows
-                    //check later
-                    if (currentTime >= maxTime_s)
-                    {
-                        currentTime = maxTime_s;
-                        NotifyPropertyChanged("CurrentTime");
-                        return;
-                    }
-
-                    NotifyPropertyChanged("CurrentTime"); //check if only when CurrentTime acctually changes
-                    Thread.Sleep(sleep);
-                }
-            }).Start();
-
-        }
-
-        public void disconnect()
-        {
-            stop = true;
-            client.Close();
-        }
-
+        //update the properties according to the current row
         private void updateProperties()
         {
             int i = 0;
@@ -339,8 +306,6 @@ namespace FIApp
 
         public List<double> getDataByFeatureName(string feature)
         {
-
-            //check later
             if (feature == null || !csvData.ContainsKey(feature))
             {
                 return new List<double> { };
@@ -348,46 +313,35 @@ namespace FIApp
 
             return csvData[feature];
         }
-
-
-        /**
-         * 
-         * Helper Method can be deleted before submitting
-         * 
-         */
-        public void helper()
+        
+        //client-server
+        public void connect()
         {
-            csvParser();
-            Console.WriteLine("helper-method");
+            csvParser(); 
+            client = new TcpClient("localhost", 5400);
+        }
+
+        //start the communication with the flightGear server
+        public void start()
+        {
+            Stream stream = client.GetStream();
+            StreamWriter writer = new StreamWriter(stream);
             new Thread(delegate ()
             {
-
-/**
-                while (!stop)
+                while (!stop && currentRow <= numberOfRows)
                 {
-                    updateProperties();
-                    currentRow++;
-                    currentTime = currentRow / 10;
-                    NotifyPropertyChanged("CurrentTime");
-                    if (currentRow == 2000)
-                    {
-                        stop = true;
-                    }
-                    Thread.Sleep(10);
-*/
-
-                while (true)
-                {
-                    if (Speed == 0)
+                    //If the speed is zero we temporarily stop sending information to the server
+                    if (speed == 0)
                     {
                         continue;
                     }
-
+                    //send the current csv row to flightGear
+                    writer.Write(dataForFlightGear[currentRow]);
+                    writer.Flush();
                     updateProperties();
-
                     currentRow++;
                     currentTime = currentRow / 10; // one second contains 10 rows
-
+                    //if currentTime >= maxTime_s it means we finished sending all of the flight data
                     if (currentTime >= maxTime_s)
                     {
                         currentTime = maxTime_s;
@@ -396,10 +350,17 @@ namespace FIApp
                     }
 
                     NotifyPropertyChanged("CurrentTime");
-                    Console.WriteLine(currentTime);
                     Thread.Sleep(sleep);
                 }
             }).Start();
+
         }
+
+        public void disconnect()
+        {
+            stop = true;
+            client.Close();
+        }
+
     }
 }
