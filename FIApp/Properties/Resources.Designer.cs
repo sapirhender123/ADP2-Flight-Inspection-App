@@ -61,6 +61,104 @@ namespace FIApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to using System;
+        ///using System.Collections.Generic;
+        ///using System.Globalization;
+        ///using System.Linq;
+        ///using System.Text;
+        ///using System.Threading.Tasks;
+        ///using System.Windows.Data;
+        ///
+        ///namespace FIApp
+        ///{
+        ///    /**
+        ///    * converter for aileron and elevator binding.
+        ///    * aileron and elevator normal values are between -1 and 1.
+        ///    * The conversion increases the range in order to emphasize the joystick&apos;s movement. 
+        ///    */
+        ///
+        ///    class AileronElevatorConverter : IValueConverter
+        ///    {
+        ///        public object Conve [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string AileronElevatorConverter {
+            get {
+                return ResourceManager.GetString("AileronElevatorConverter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using System;
+        ///using System.Globalization;
+        ///using System.Windows.Data;
+        ///
+        ///namespace FIApp
+        ///{
+        ///    // converter for airspeed binding: converts speed to degrees
+        ///    class AirSpeedConverter : IValueConverter
+        ///    {
+        ///        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        ///        {
+        ///            double newVal = (double)value;
+        ///            //display any speed between 0 and 40 as 40
+        ///            if (newVal &lt;= 40)
+        ///            {
+        ///                return 15.5;
+        ///           [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string AirSpeedConverter {
+            get {
+                return ResourceManager.GetString("AirSpeedConverter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using System;
+        ///using System.Globalization;
+        ///using System.Windows.Data;
+        ///
+        ///namespace FIApp
+        ///{
+        ///    // converter for altimeter binding: converts altitude to degrees
+        ///    class AltimeterConverter : IValueConverter
+        ///    {
+        ///        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        ///        {
+        ///            double newVal = (double)value;
+        ///            //the parameter indicates which altimeter dial it is: 100 foot, 1000 foot or 10000 foot
+        ///            int newParameter = Int32 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string AltimeterConverter {
+            get {
+                return ResourceManager.GetString("AltimeterConverter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using System;
+        ///using System.Globalization;
+        ///using System.Windows.Data;
+        ///
+        ///namespace FIApp
+        ///{
+        ///    // converter for heading binding: changes the spin direction 
+        ///    class HeadingConverter : IValueConverter
+        ///    {
+        ///        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        ///        {
+        ///            double newVal = (double)value;
+        ///            return newVal * -1;
+        ///        }
+        ///
+        ///        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo c [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string HeadingConverter {
+            get {
+                return ResourceManager.GetString("HeadingConverter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot;?&gt;
         ///
         ///&lt;PropertyList&gt;
@@ -90,6 +188,30 @@ namespace FIApp.Properties {
         internal static string playback_small {
             get {
                 return ResourceManager.GetString("playback_small", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using System;
+        ///using System.Globalization;
+        ///using System.Windows.Data;
+        ///
+        ///namespace FIApp
+        ///{
+        ///    /**
+        ///     * converter for yaw, roll and pitch binding: converts value to degrees.
+        ///     * yaw and roll range is from -180 to 180, pitch range is from -90 to 90.
+        ///     */
+        ///    class YawRollPitchConverter : IValueConverter
+        ///    {
+        ///        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        ///        {
+        ///            double newVal = (double)value;
+        ///            //the parameter i [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string YawRollPitchConverter {
+            get {
+                return ResourceManager.GetString("YawRollPitchConverter", resourceCulture);
             }
         }
     }

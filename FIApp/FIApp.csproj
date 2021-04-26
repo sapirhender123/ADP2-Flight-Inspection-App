@@ -65,7 +65,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AileronElevatorConverter.cs" />
+    <Compile Include="AirSpeedConverter.cs" />
+    <Compile Include="AltimeterConverter.cs" />
+    <Compile Include="FlightInstrumentsView.xaml.cs">
+      <DependentUpon>FlightInstrumentsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FlightInstrumentsViewModel.cs" />
+    <Compile Include="HeadingConverter.cs" />
+    <Compile Include="JoystickView.xaml.cs">
+      <DependentUpon>JoystickView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="JoystickViewModel.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model.cs" />
+    <Compile Include="SecondTab.xaml.cs">
+      <DependentUpon>SecondTab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="src\AnomalyDetector.xaml.cs">
       <DependentUpon>AnomalyDetector.xaml</DependentUpon>
     </Compile>
@@ -90,6 +108,27 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="StartFlightGear.xaml.cs">
+      <DependentUpon>StartFlightGear.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StartFlightGearViewModel.cs" />
+    <Compile Include="YawRollPitchConverter.cs" />
+    <Page Include="FlightInstrumentsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="JoystickView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SecondTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="src\AnomalyDetector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,6 +148,10 @@
     <Page Include="src\PlayController.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StartFlightGear.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +187,7 @@
     <Folder Include="src\plugins\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="reg_flight.csv" />
     <None Include="Resources\playback_small.xml" />
   </ItemGroup>
   <ItemGroup>

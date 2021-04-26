@@ -118,7 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="AileronElevatorConverter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\aileronelevatorconverter.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="AirSpeedConverter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\airspeedconverter.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="AltimeterConverter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\altimeterconverter.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="HeadingConverter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\headingconverter.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="playback_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\playback_small.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1255</value>
+  </data>
+  <data name="YawRollPitchConverter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\yawrollpitchconverter.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>
