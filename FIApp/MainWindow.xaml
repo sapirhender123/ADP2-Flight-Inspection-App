@@ -5,12 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:uc="clr-namespace:FIApp.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="#FFE4E4E4">
+        Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <uc:JoystickView Margin="550,0,0,0"/>
-        <uc:PlayController Margin="0,246,0,0"/>
-        <uc:StartFlightGear Margin="-450,0,0,0"/>
-        <uc:FlightInstrumentsView Margin="-36,34,0,0"/>
+        <TabControl HorizontalAlignment="Center" Height="450" VerticalAlignment="Top" Width="800">
+            <TabItem Header="welcome" Margin="0,0,-137,0">
+                <uc:StartFlightGear Margin="-3,-2,3,2"/>
+            </TabItem>
+            <TabItem Header="instruments" Margin="137,0,-267,0">
+                <uc:SecondTab Margin="0,0,0,0"/>
+            </TabItem>
+            <TabItem Header="graphs" Margin="267,0,-397,0">
+            </TabItem>
+        </TabControl>
     </Grid>
-
 </Window>
+
