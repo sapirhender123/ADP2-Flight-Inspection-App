@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
+//create a model to be shared with the views
 static class Globals
 {
     public static Model model = new Model();
@@ -10,9 +11,6 @@ static class Globals
 
 namespace FIApp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -22,7 +20,7 @@ namespace FIApp
     }
 }
 
-
+//create and initialize a model field in the views
 namespace FIApp.Views
 {
     public partial class JoystickView : UserControl
@@ -46,9 +44,34 @@ namespace FIApp.Views
         Model model = Globals.model;
     }
 }
+
 namespace FIApp.Views
 {
     public partial class PlayController : UserControl
+    {
+        Model model = Globals.model;
+    }
+}
+
+namespace FIApp.Views
+{
+    public partial class AnomalyDetector : UserControl
+    {
+        Model model = Globals.model;
+    }
+}
+
+namespace FIApp.Views
+{
+    public partial class FeatureList: UserControl
+    {
+        Model model = Globals.model;
+    }
+}
+
+namespace FIApp.Views
+{
+    public partial class Graphs: UserControl
     {
         Model model = Globals.model;
     }
