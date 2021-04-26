@@ -9,7 +9,7 @@
         <Viewbox Height="450" VerticalAlignment="Top" Width="800" Margin="0,0,0,0" >
             <Canvas Height="450" Width="800" >
                 <Canvas.Background>
-                    <ImageBrush ImageSource="Properties/planeBackground.jpg"/>
+                    <ImageBrush ImageSource="Resources/planeBackground.jpg"/>
                 </Canvas.Background>
                 <Label Name="WelcomeLabel" Content="Welcome to our flight inspection app! &#xa; just a few steps before we begin" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Canvas.Left="110" Canvas.Top="100" Height="95" Width="568" Background="LightGray" FontSize="30" />
                 <Button Name="Button" Content="1. Choose a csv file to upload" HorizontalAlignment="Center" Height="70" VerticalAlignment="Top" Width="170" Click="button_click" Canvas.Left="110" Canvas.Top="225"/>
