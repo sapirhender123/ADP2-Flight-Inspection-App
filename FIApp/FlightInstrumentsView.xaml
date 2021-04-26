@@ -15,7 +15,45 @@
     <Grid>
         <Viewbox Height="380" VerticalAlignment="Top" Width="580">
             <Canvas HorizontalAlignment="Center" Width="800" Height="450">
-                <Image Name="Altimeter" HorizontalAlignment="Left" Height="190" VerticalAlignment="Top" Width="190" Source="Properties/altimeter.png" Margin="545,10,0,0"/>
+                <Image Name="Altimeter" HorizontalAlignment="Left" Height="190" VerticalAlignment="Top" Width="190" Source="Resources/altimeter.png" Margin="545,10,0,0"/>
+                <Rectangle Name="AltimeterDial10000" HorizontalAlignment="Left" Height="130" Stroke="white" VerticalAlignment="Top" Width="8" RenderTransformOrigin="0.5,0.5" Margin="634,33,0,0">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black" Offset="0.545"/>
+                            <GradientStop Color="White" Offset="0.533"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="{Binding VM_Altimeter,Converter={StaticResource AltimeterConverter},ConverterParameter=10000}"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                    <Rectangle.LayoutTransform>
+                        <RotateTransform Angle="360"/>
+                    </Rectangle.LayoutTransform>
+                </Rectangle>
+                <Rectangle Name="AltimeterDial1000" HorizontalAlignment="Left" Height="130" Stroke="white" VerticalAlignment="Top" Width="8" RenderTransformOrigin="0.5,0.5" Margin="634,33,0,0">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black" Offset="0.545"/>
+                            <GradientStop Color="White" Offset="0.533"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="{Binding VM_Altimeter,Converter={StaticResource AltimeterConverter},ConverterParameter=1000}"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                    <Rectangle.LayoutTransform>
+                        <RotateTransform Angle="360"/>
+                    </Rectangle.LayoutTransform>
+                </Rectangle>
                 <Rectangle Name="AltimeterDial100" HorizontalAlignment="Left" Height="130" Stroke="white" VerticalAlignment="Top" Width="8" RenderTransformOrigin="0.5,0.5" Margin="634,33,0,0">
                     <Rectangle.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -35,10 +73,9 @@
                         <RotateTransform Angle="360"/>
                     </Rectangle.LayoutTransform>
                 </Rectangle>
-
                 <Ellipse Name="heading" HorizontalAlignment="Left" Height="190" Width="190" Margin="145,10,0,0" Stroke="white" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="Properties/heading.jpeg" Stretch="UniformToFill" Opacity="1.2"/>
+                        <ImageBrush ImageSource="Resources/heading.jpeg" Stretch="UniformToFill" Opacity="1.2"/>
                     </Ellipse.Fill>
                     <Ellipse.RenderTransform>
                         <TransformGroup>
@@ -52,7 +89,7 @@
                         <RotateTransform Angle="0"/>
                     </Ellipse.LayoutTransform>
                 </Ellipse>
-                <Image Name="AirSpeed" HorizontalAlignment="Left" Height="190" VerticalAlignment="Top" Width="190" Source="Properties/airspeed.png" Margin="345,10,0,0"/>
+                <Image Name="AirSpeed" HorizontalAlignment="Left" Height="190" VerticalAlignment="Top" Width="190" Source="Resources/airspeed.png" Margin="345,10,0,0"/>
                 <Rectangle Name="AirspeedDial" HorizontalAlignment="Left" Stroke="white" Height="130" VerticalAlignment="Top" Width="8" RenderTransformOrigin="0.5,0.5" Margin="438,33,0,0">
                     <Rectangle.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -72,8 +109,8 @@
                         <RotateTransform Angle="0"/>
                     </Rectangle.LayoutTransform>
                 </Rectangle>
-                <Image Name="headingPlane" Source="properties/plane.png" HorizontalAlignment="Left" Height="121" VerticalAlignment="Top" Width="134" Margin="172,44,0,0"/>
-                <Image Name="yaw" Source="properties/yawRoll.png" HorizontalAlignment="Left" Height="190" VerticalAlignment="Top" Width="190" Margin="145,205,0,0"/>
+                <Image Name="headingPlane" Source="Resources/plane.png" HorizontalAlignment="Left" Height="121" VerticalAlignment="Top" Width="134" Margin="172,44,0,0"/>
+                <Image Name="yaw" Source="Resources/yawRoll.png" HorizontalAlignment="Left" Height="190" VerticalAlignment="Top" Width="190" Margin="145,205,0,0"/>
                 <Rectangle Name="YawDial" HorizontalAlignment="Left" Stroke="gray" Height="136" VerticalAlignment="Top" Width="6" RenderTransformOrigin="0.5,0.5" Margin="234,236,0,0">
                     <Rectangle.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -93,7 +130,7 @@
                         <RotateTransform Angle="0"/>
                     </Rectangle.LayoutTransform>
                 </Rectangle>
-                <Image Name="roll" Source="properties/yawRoll.png" HorizontalAlignment="Left" Height="190" VerticalAlignment="Top" Width="190" Margin="545,205,0,0"/>
+                <Image Name="roll" Source="Resources/yawRoll.png" HorizontalAlignment="Left" Height="190" VerticalAlignment="Top" Width="190" Margin="545,205,0,0"/>
                 <Rectangle Name="RollDial" HorizontalAlignment="Left" Stroke="gray" Height="136" VerticalAlignment="Top" Width="6" RenderTransformOrigin="0.5,0.5" Margin="634,236,0,0">
                     <Rectangle.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -113,7 +150,7 @@
                         <RotateTransform Angle="0"/>
                     </Rectangle.LayoutTransform>
                 </Rectangle>
-                <Image Name="pitch" Source="properties/pitch.png" HorizontalAlignment="Left" Height="190" VerticalAlignment="Top" Width="190" Margin="345,205,0,0"/>
+                <Image Name="pitch" Source="Resources/pitch.png" HorizontalAlignment="Left" Height="190" VerticalAlignment="Top" Width="190" Margin="345,205,0,0"/>
                 <Rectangle Name="PitchDial" HorizontalAlignment="Left" Stroke="gray" Height="136" VerticalAlignment="Top" Width="6" RenderTransformOrigin="0.5,0.5" Margin="436,236,0,0">
                     <Rectangle.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
