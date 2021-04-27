@@ -12,23 +12,23 @@
                 <Slider Value="{Binding FG_CurrentTime}" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="780" TickPlacement="BottomRight" TickFrequency="1" Maximum="{Binding Maximum, Mode=OneTime}" IsSnapToTickEnabled="True" Canvas.Left="10" Canvas.Top="70"/>
                 <Image MouseDown="PlayController_Play" RenderTransformOrigin="0.853,0.504" Canvas.Left="131" Height="66" Width="73">
                     <Image.Source>
-                        <BitmapImage DecodePixelWidth="300" UriSource="resources\Play.png" />
+                        <BitmapImage DecodePixelWidth="300" UriSource="Resources\Play.png" />
                     </Image.Source>
                 </Image>
-                <Image MouseDown="PlayController_FastFordward" RenderTransformOrigin="0.853,0.504" Canvas.Left="262" Canvas.Top="9" Height="55" Width="58">
+                <Image MouseDown="PlayController_SpeedUp" RenderTransformOrigin="0.853,0.504" Canvas.Left="262" Canvas.Top="9" Height="55" Width="58">
                     <Image.Source>
-                        <BitmapImage DecodePixelWidth="300" UriSource="resources\MoveFastButton.png" />
+                        <BitmapImage DecodePixelWidth="300" UriSource="Resources\SpeedUpButton.png" />
                     </Image.Source>
                 </Image>
-                <Image MouseDown="PlayController_MoveBack" RenderTransformOrigin="0.853,0.504" Source="resources\MoveBackButton.png" Canvas.Left="14" Canvas.Top="9" Height="55" Width="57"/>
+                <Image MouseDown="PlayController_SlowDown" RenderTransformOrigin="0.853,0.504" Source="Resources\SlowDownButton.png" Canvas.Left="14" Canvas.Top="9" Height="55" Width="57"/>
                 <Image MouseDown="PlayController_Pause" RenderTransformOrigin="0.853,0.504" Canvas.Left="76" Canvas.Top="9" Height="55" Width="55">
                     <Image.Source>
-                        <BitmapImage DecodePixelWidth="300" UriSource="resources\Pause.png" />
+                        <BitmapImage DecodePixelWidth="300" UriSource="Resources\Pause.png" />
                     </Image.Source>
                 </Image>
                 <Image MouseDown="PlayController_Stop" RenderTransformOrigin="0.853,0.504" Canvas.Left="202" Canvas.Top="9" Height="55" Width="55">
                     <Image.Source>
-                        <BitmapImage DecodePixelWidth="300" UriSource="resources\StopButton.png" />
+                        <BitmapImage DecodePixelWidth="300" UriSource="Resources\Stop.png" />
                     </Image.Source>
                 </Image>
                 <Label Content="Play Speed: " HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="145" FontSize ="25" FontFamily="Arial" Canvas.Left="335" Canvas.Top="25"/>

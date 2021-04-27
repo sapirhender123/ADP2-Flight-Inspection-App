@@ -28,7 +28,7 @@ namespace FIApp.Views
             }
         } 
 
-        private void PlayController_FastFordward(object sender, MouseButtonEventArgs e)
+        private void PlayController_SpeedUp(object sender, MouseButtonEventArgs e)
         {
             if (!playing)
             {
@@ -40,7 +40,7 @@ namespace FIApp.Views
             }
         }
 
-        private void PlayController_MoveBack(object sender, MouseButtonEventArgs e)
+        private void PlayController_SlowDown(object sender, MouseButtonEventArgs e)
         {
             if (!playing)
             {
