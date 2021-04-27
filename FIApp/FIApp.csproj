@@ -68,10 +68,22 @@
     <Compile Include="AileronElevatorConverter.cs" />
     <Compile Include="AirSpeedConverter.cs" />
     <Compile Include="AltimeterConverter.cs" />
+    <Compile Include="AnomalyDetector.xaml.cs">
+      <DependentUpon>AnomalyDetector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AnomalyDetectorViewModel.cs" />
+    <Compile Include="FeatureList.xaml.cs">
+      <DependentUpon>FeatureList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FeatureListViewModel.cs" />
     <Compile Include="FlightInstrumentsView.xaml.cs">
       <DependentUpon>FlightInstrumentsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="FlightInstrumentsViewModel.cs" />
+    <Compile Include="Graphs.xaml.cs">
+      <DependentUpon>Graphs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphsViewModel.cs" />
     <Compile Include="HeadingConverter.cs" />
     <Compile Include="JoystickView.xaml.cs">
       <DependentUpon>JoystickView.xaml</DependentUpon>
@@ -81,39 +93,39 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model.cs" />
-    <Compile Include="src\SecondTab.xaml.cs">
-      <DependentUpon>SecondTab.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="src\AnomalyDetector.xaml.cs">
-      <DependentUpon>AnomalyDetector.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="src\AnomalyDetectorViewModel.cs" />
-    <Compile Include="src\FeatureList.xaml.cs">
-      <DependentUpon>FeatureList.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="src\FeatureListViewModel.cs" />
-    <Compile Include="src\Graphs.xaml.cs">
-      <DependentUpon>Graphs.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="src\GraphsViewModel.cs" />
-    <Compile Include="src\NativeMethods.cs" />
-    <Compile Include="src\PlayController.xaml.cs">
-      <DependentUpon>PlayController.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="src\PlayerViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\ThirdTab.xaml.cs">
-      <DependentUpon>ThirdTab.xaml</DependentUpon>
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="PlayController.xaml.cs">
+      <DependentUpon>PlayController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerViewModel.cs" />
+    <Compile Include="SecondTab.xaml.cs">
+      <DependentUpon>SecondTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="StartFlightGear.xaml.cs">
       <DependentUpon>StartFlightGear.xaml</DependentUpon>
     </Compile>
     <Compile Include="StartFlightGearViewModel.cs" />
+    <Compile Include="ThirdTab.xaml.cs">
+      <DependentUpon>ThirdTab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="YawRollPitchConverter.cs" />
+    <Page Include="AnomalyDetector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FeatureList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="FlightInstrumentsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Graphs.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -125,31 +137,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="src\SecondTab.xaml">
+    <Page Include="PlayController.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="src\AnomalyDetector.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="src\FeatureList.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="src\Graphs.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="src\PlayController.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="src\ThirdTab.xaml">
+    <Page Include="SecondTab.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="StartFlightGear.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThirdTab.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -172,6 +172,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -180,33 +181,26 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="src\resources\Play.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\plugins\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="reg_flight.csv" />
     <None Include="Resources\playback_small.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="src\resources\MoveBackButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="src\resources\MoveFastButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="src\resources\Pause.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="src\resources\StopButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="src\resources\CircleAnomaly.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="src\resources\RegressionLineAnomaly.png" />
+    <Resource Include="Resources\airspeed.png" />
+    <Resource Include="Resources\altimeter.png" />
+    <Resource Include="Resources\CircleAnomaly.png" />
+    <Resource Include="Resources\heading.jpeg" />
+    <Resource Include="Resources\Pause.png" />
+    <Resource Include="Resources\pitch.png" />
+    <Resource Include="Resources\plane.png" />
+    <Resource Include="Resources\planeBackground.jpg" />
+    <Resource Include="Resources\Play.png" />
+    <Resource Include="Resources\RegressionLineAnomaly.png" />
+    <Resource Include="Resources\slowDownButton.png" />
+    <Resource Include="Resources\SpeedUpButton.png" />
+    <Resource Include="Resources\Stop.png" />
+    <Resource Include="Resources\yawRoll.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
