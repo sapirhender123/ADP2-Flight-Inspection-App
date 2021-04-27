@@ -20,7 +20,7 @@
                         <BitmapImage DecodePixelWidth="300" UriSource="Resources\SpeedUpButton.png" />
                     </Image.Source>
                 </Image>
-                <Image MouseDown="PlayController_SlowDown" RenderTransformOrigin="0.853,0.504" Source="Resources\SlowDownButton.png" Canvas.Left="14" Canvas.Top="9" Height="55" Width="57"/>
+                <Image MouseDown="PlayController_SlowDown" RenderTransformOrigin="0.853,0.504" Source="Resources\slowDownButton.png" Canvas.Left="14" Canvas.Top="9" Height="55" Width="57"/>
                 <Image MouseDown="PlayController_Pause" RenderTransformOrigin="0.853,0.504" Canvas.Left="76" Canvas.Top="9" Height="55" Width="55">
                     <Image.Source>
                         <BitmapImage DecodePixelWidth="300" UriSource="Resources\Pause.png" />

@@ -81,7 +81,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model.cs" />
-    <Compile Include="SecondTab.xaml.cs">
+    <Compile Include="src\SecondTab.xaml.cs">
       <DependentUpon>SecondTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="src\AnomalyDetector.xaml.cs">
@@ -96,9 +96,6 @@
       <DependentUpon>Graphs.xaml</DependentUpon>
     </Compile>
     <Compile Include="src\GraphsViewModel.cs" />
-    <Compile Include="src\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="src\NativeMethods.cs" />
     <Compile Include="src\PlayController.xaml.cs">
       <DependentUpon>PlayController.xaml</DependentUpon>
@@ -107,6 +104,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\ThirdTab.xaml.cs">
+      <DependentUpon>ThirdTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="StartFlightGear.xaml.cs">
       <DependentUpon>StartFlightGear.xaml</DependentUpon>
@@ -125,7 +125,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SecondTab.xaml">
+    <Page Include="src\SecondTab.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -141,13 +141,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="src\MainWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="src\PlayController.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\ThirdTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="StartFlightGear.xaml">
       <Generator>MSBuild:Compile</Generator>
