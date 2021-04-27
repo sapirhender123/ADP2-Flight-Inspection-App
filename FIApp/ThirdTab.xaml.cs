@@ -5,9 +5,9 @@ namespace FIApp.Views
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class SecondTab : UserControl
+    public partial class ThirdTab : UserControl
     {
-        public SecondTab()
+        public ThirdTab()
         {
             InitializeComponent();
         }
