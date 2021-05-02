@@ -204,5 +204,8 @@
     <Resource Include="Resources\Stop.png" />
     <Resource Include="Resources\yawRoll.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="plugins\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
