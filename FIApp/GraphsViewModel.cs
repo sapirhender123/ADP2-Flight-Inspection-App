@@ -78,7 +78,7 @@ namespace FlApp
 
                 if (!File.Exists("learnOutput.csv"))
                 {
-                    NativeMethods.CallFuncFromDLLByName("LearnNormalDLL.dll", "LearnNormal");
+                    NativeMethods.CallFuncFromDLLByName("Resources/LearnNormalDLL.dll", "LearnNormal");
                 }
 
                 // Parse LearnNormal output -> in file learnOutput.csv

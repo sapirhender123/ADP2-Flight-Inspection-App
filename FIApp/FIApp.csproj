@@ -181,7 +181,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\LearnNormalDLL.dll" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="reg_flight.csv" />
     <None Include="Resources\playback_small.xml" />
@@ -201,6 +203,9 @@
     <Resource Include="Resources\SpeedUpButton.png" />
     <Resource Include="Resources\Stop.png" />
     <Resource Include="Resources\yawRoll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="plugins\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

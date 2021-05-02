@@ -159,6 +159,16 @@ namespace FIApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] LearnNormalDLL {
+            get {
+                object obj = ResourceManager.GetObject("LearnNormalDLL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot;?&gt;
         ///
         ///&lt;PropertyList&gt;
