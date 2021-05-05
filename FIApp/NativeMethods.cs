@@ -22,6 +22,7 @@ namespace FIApp
         {
             if (!File.Exists(dllPath))
             {
+                Console.WriteLine(String.Format("File not found {0}", dllPath));
                 return false;
             }
 

@@ -202,6 +202,18 @@ namespace FIApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 0,0,0,0,0,0,0,0,0,0,0,0,0,0,63.98504421,-22.59248365,-9999,0,0.424,270.021362,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+        ///0,0,0,0,0,0,0,0,0,0,0,0,0,0,63.98504421,-22.59248365,-9999,0,0.424,270.021362,0,0,0,0,0,389.088776,1.193444,12,40,0,0,0,0,0,0,0,283.232513,0,0,0,0,0
+        ///0,0,0,0,0,0,0,0,0,0,0,0,0,0,63.99183534,-22.60542555,-9999,0,0.424,180.018387,0,0,0,0,0,389.088776,1.193444,12,40,0,0,0,0,0,0,0,283.232513,0,0,0,0,0
+        ///0,0,0,0,0,0,0,0,0,0,0,0,0,0,63.99183534,-22.60542555,-9999,0,0.424,180.018387,0,0,0,0,0,3 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string reg_flight {
+            get {
+                return ResourceManager.GetString("reg_flight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to using System;
         ///using System.Globalization;
         ///using System.Windows.Data;

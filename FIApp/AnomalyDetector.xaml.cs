@@ -61,7 +61,7 @@ namespace FIApp.Views
 
             List<AnomalyItem> items = new List<AnomalyItem>();
             
-            if (!File.Exists("anomalyOutputFile.csv"))
+            if (!File.Exists("output\\anomalyOutputFile.csv"))
             {
                 return;
             }
@@ -75,7 +75,7 @@ namespace FIApp.Views
                 imagePath = @"resources\RegressionLineAnomaly.png";
             }
 
-            using (var reader = new StreamReader("anomalyOutputFile.csv"))
+            using (var reader = new StreamReader("output\\anomalyOutputFile.csv"))
             {
                 while (!reader.EndOfStream)
                 {

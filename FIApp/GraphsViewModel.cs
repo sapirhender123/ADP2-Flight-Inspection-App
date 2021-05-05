@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Windows;
 
 namespace FlApp
 {
@@ -76,13 +77,19 @@ namespace FlApp
             {
                 currentFeature = model.CurrentFeature;
 
-                if (!File.Exists("learnOutput.csv"))
+                if (!File.Exists("output\\learnOutput.csv"))
                 {
-                    NativeMethods.CallFuncFromDLLByName("Resources/LearnNormalDLL.dll", "LearnNormal");
+                    string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
+                    string FileName = string.Format("{0}Resources\\LearnNormalDLL.dll", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
+                    if (!NativeMethods.CallFuncFromDLLByName(FileName, "LearnNormal"))
+                    {
+                        MessageBox.Show("failed to load DLL, see console logs");
+                        return;
+                    }
                 }
 
                 // Parse LearnNormal output -> in file learnOutput.csv
-                using (TextFieldParser parser = new TextFieldParser("learnOutput.csv"))
+                using (TextFieldParser parser = new TextFieldParser("output\\learnOutput.csv"))
                 {
                     parser.TextFieldType = FieldType.Delimited;
                     parser.SetDelimiters(",");
@@ -200,7 +207,13 @@ namespace FlApp
                 RegFeaturePoints = new List<DataPoint>();
                 for (int i = idx; i < end; i++)
                 {
-                    RegFeaturePoints.Add(new DataPoint(currentFeaturePoints[i], correlativeFeaturePoints[i]));
+                    try
+                    {
+                        RegFeaturePoints.Add(new DataPoint(currentFeaturePoints[i], correlativeFeaturePoints[i]));
+                    } catch
+                    {
+                        return new List<DataPoint>();
+                    }
                 }
                 NotifyPropertyChanged("RegFeaturePoints");
 

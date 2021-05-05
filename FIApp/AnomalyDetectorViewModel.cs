@@ -60,13 +60,6 @@ namespace FIApp
 
         public void LoadPlugin(string pluginPath)
         {
-            if (!File.Exists("reg_flight.csv") || !File.Exists("anomaly_flight.csv"))
-            {
-                Console.WriteLine("Missing files");
-                //MessageBox.Show("Missing files", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-                return;
-            }
             _ = NativeMethods.CallFuncFromDLLByName(pluginPath, "Detect");
         }
 
@@ -152,9 +145,9 @@ namespace FIApp
         private void ResetAnomalyList()
         {
             DLLPluginPath = "";
-            if (File.Exists("anomalyOutputFile.csv"))
+            if (File.Exists("output\\anomalyOutputFile.csv"))
             {
-                File.Delete("anomalyOutputFile.csv");
+                File.Delete("output\\anomalyOutputFile.csv");
             }
 
             List<AnomalyItem> items = new List<AnomalyItem>();
