@@ -65,6 +65,11 @@ namespace FIApp
         // Slider stuff :-)
         public int Maximum
         {
+            set
+            {
+                model.maxTime_s = value;
+                NotifyPropertyChanged("Maximum");
+            }
             get
             {
                 return model.maxTime_s;

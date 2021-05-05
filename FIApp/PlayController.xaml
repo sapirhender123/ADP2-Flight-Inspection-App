@@ -9,7 +9,7 @@
         <Viewbox>
             <Canvas Height="100" Width="800">
                 <!-- change the time when the slider is moving -->
-                <Slider Value="{Binding FG_CurrentTime}" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="780" TickPlacement="BottomRight" TickFrequency="1" Maximum="{Binding Maximum, Mode=OneTime}" IsSnapToTickEnabled="True" Canvas.Left="10" Canvas.Top="70"/>
+                <Slider Value="{Binding FG_CurrentTime}" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="780" TickPlacement="BottomRight" TickFrequency="1" Maximum="{Binding Maximum}" IsSnapToTickEnabled="True" Canvas.Left="10" Canvas.Top="70" Loaded="Slider_Loaded"/>
                 <Image MouseDown="PlayController_Play" RenderTransformOrigin="0.853,0.504" Canvas.Left="131" Height="66" Width="73">
                     <Image.Source>
                         <BitmapImage DecodePixelWidth="300" UriSource="Resources\Play.png" />

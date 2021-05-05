@@ -7,10 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid x:Name="GridContainer">
-        <FIApp:PlayController Margin="0,349,0,0" Height="96" VerticalAlignment="Top"/>
+        <FIApp:PlayController Margin="-4,315,0,29.6"/>
         <FIApp:AnomalyDetector Margin="10,0,544,251"/>
         <FIApp:Graphs Title="Orignal Graph" Margin="267,0,267,251"/>
-        <FIApp:Graphs Title="Linear Regression" Margin="267,170,0,101"/>
+        <FIApp:Graphs Title="Linear Regression" Margin="267,170,0,140"/>
         <FIApp:Graphs Title="Correlative Graph" Margin="530,0,10,251"/>
         <FIApp:FeatureList Margin="9,182,544,201" Width="Auto"/>
     </Grid>

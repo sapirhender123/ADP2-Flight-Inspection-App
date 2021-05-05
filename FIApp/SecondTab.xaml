@@ -9,6 +9,6 @@
     <Grid>
         <uc:JoystickView Margin="450,60,0,0"/>
         <uc:FlightInstrumentsView Margin="-300,0,0,0"/>
-        <uc:PlayController Margin="-4,230,0,0"/>
+        <uc:PlayController Margin="-4,315,0,29.6"/>
     </Grid>
 </UserControl>
