@@ -337,7 +337,15 @@ namespace FIApp
                     }
                     //send the current csv row to flightGear
                     writer.Write(dataForFlightGear[currentRow]);
-                    writer.Flush();
+
+                    try
+                    {
+                        writer.Flush();
+                    } catch
+                    {
+                        // Disconnected
+                        return;
+                    }
                     updateProperties();
                     currentRow++;
                     currentTime = currentRow / 10; // one second contains 10 rows
