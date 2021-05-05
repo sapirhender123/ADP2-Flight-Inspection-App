@@ -160,7 +160,7 @@ namespace FIApp
         // CTOR
         public Model()
         {
-            csvPath = "anomaly_flight.csv"; //default
+            csvPath = "";
             speed = 0; 
             sleep = 0;
             currentTime = 0;

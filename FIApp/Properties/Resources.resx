@@ -136,6 +136,9 @@
   <data name="playback_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\playback_small.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1255</value>
   </data>
+  <data name="reg_flight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reg_flight.csv;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1255</value>
+  </data>
   <data name="YawRollPitchConverter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\yawrollpitchconverter.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>

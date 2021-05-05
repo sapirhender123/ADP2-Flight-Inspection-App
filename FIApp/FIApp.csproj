@@ -177,6 +177,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\reg_flight.csv" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

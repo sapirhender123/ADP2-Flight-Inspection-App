@@ -18,16 +18,42 @@ namespace FIApp.Views
             DataContext = vm;
         }
 
+        // Create a NON READ ONLY directory
+        private void createDirectory(string name)
+        {
+            if (!Directory.Exists(name))
+            {
+                DirectorySecurity securityRules = new DirectorySecurity();
+                securityRules.AddAccessRule(new FileSystemAccessRule("Users", FileSystemRights.FullControl, AccessControlType.Allow));
+                DirectoryInfo di = Directory.CreateDirectory(name, securityRules);
+            }
+        }
+
         //choose a csv file to upload
         private void button_click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
             if (ofd.ShowDialog() == true)
             {
+                createDirectory("input");
+                createDirectory("output");
+
                 string path = ofd.FileName;
                 vm.VM_CsvPath = path;
                 //print the chosen path for approval
                 MessageBox.Show(path);
+
+                // Copy selected file to input directory under the name "anomaly_flight.csv"
+                // Required by LearnNormalDLL.dll
+                string anomalyFlight = "input\\anomaly_flight.csv";
+                File.Copy(path, anomalyFlight, true); // True means override is allowed
+
+                // Copy selected file to input directory under the name "reg_flight.csv"
+                // Required by LearnNormalDLL.dll
+                string regFlight = Path.Combine("input\\reg_flight.csv");
+                string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
+                string srcRegFlight = string.Format("{0}Resources\\reg_flight.csv", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
+                File.Copy(srcRegFlight, regFlight, true); // True means override is allowed
             }
 
         }
