@@ -72,5 +72,10 @@ namespace FIApp.Views
             vm.FG_Speed = 0;
             playing = false;
         }
+
+        private void Slider_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            vm.Maximum = vm.Maximum;
+        }
     }
 }

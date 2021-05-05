@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using FIApp.ViewModels;
+using System.Threading;
+using System.Globalization;
 
 //create a model to be shared with the views
 
@@ -17,6 +19,7 @@ namespace FIApp
     {
         public MainWindow()
         {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-us"); // Change exception language
             InitializeComponent();
         }
     }
