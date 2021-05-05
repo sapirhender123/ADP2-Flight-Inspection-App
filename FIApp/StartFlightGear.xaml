@@ -12,9 +12,9 @@
                     <ImageBrush ImageSource="Resources/planeBackground.jpg"/>
                 </Canvas.Background>
                 <Label Name="WelcomeLabel" Content="Welcome to our flight inspection app! &#xa; just a few steps before we begin" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Canvas.Left="110" Canvas.Top="100" Height="95" Width="568" Background="LightGray" FontSize="30" />
-                <Button Name="Button" Content="1. Choose a csv file to upload" HorizontalAlignment="Center" Height="70" VerticalAlignment="Top" Width="170" Click="button_click" Canvas.Left="110" Canvas.Top="225"/>
-                <Button Name="Button1" Content="2. Click to open Flight Gear" HorizontalAlignment="Center" Height="70" VerticalAlignment="Top" Width="170" Click="Button1_Click" Canvas.Left="310" Canvas.Top="225"/>
-                <Button Name="Button2" Content="3. Click only when you &#xa; see the flight cabin" HorizontalAlignment="Center" Height="70" VerticalAlignment="Top" Width="170" Click="Button2_Click" Canvas.Left="510" Canvas.Top="225"/>
+                <Button Name="FileSelection" Content="1. Choose a csv file to upload" HorizontalAlignment="Center" Height="70" VerticalAlignment="Top" Width="170" Click="fileSelection_click" Canvas.Left="110" Canvas.Top="225"/>
+                <Button Name="LoadFlightGear" Content="2. Click to open Flight Gear" HorizontalAlignment="Center" Height="70" VerticalAlignment="Top" Width="170" Click="loadFlightGear_Click" Canvas.Left="310" Canvas.Top="225"/>
+                <Button Name="StartApp" Content="3. Click only when you &#xa; see the flight cabin" HorizontalAlignment="Center" Height="70" VerticalAlignment="Top" Width="170" Click="startApp_Click" Canvas.Left="510" Canvas.Top="225"/>
             </Canvas>
         </Viewbox>
     </Grid>
