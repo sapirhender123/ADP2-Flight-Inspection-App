@@ -26,7 +26,9 @@ In order to run the application, follow the instructions in the home screen. Aft
 Now, the application will display the data and the flight gear simulator will display the plane simultaneously.
 
 ## Links
-[Link for a short video that demonstrates the user stories](<https://streamable.com/yrhalt/>)
+[uml diagram](https://github.com/sapirhender123/ADP2-Flight-Inspection-App/blob/main/uml.png)<br/>
+[a short video that demonstrates the user stories](<https://streamable.com/yrhalt/>)
+
 
 ## Contributors
 Noam Burgansky, Sapir Hender, Tal Cohen and Ella Shalom.
