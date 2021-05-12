@@ -1,8 +1,8 @@
 # ADP2-Flight-Inspection-App
-Our .NET application is designed for people who want to study sampled flight data.
-The user uploads a text file containing data that was sampled during a flight, and the application visually displays the file data from start to end.
-The FlightGear simulator displays the flying plane, while another window displays the main control surface(in a joystick like view), other flight instruments, and correlating data types in various graphs.
-This window also enables the user to jump to specific time locations using an interactive player, and check for anomalies, using a selection of C++ DLLs which are dynamically loaded as needed.
+Our .NET application is designed for people who want to study sampled flight data.<br/>
+The user uploads a text file containing data that was sampled during a flight, and the application visually displays the file data from start to end.<br/>
+The FlightGear simulator displays the flying plane, while another window displays the main control surface(in a joystick like view), other flight instruments, and correlating data types in various graphs.<br/>
+This window also enables the user to jump to specific time locations using an interactive player, and check for anomalies using a selection of C++ DLLs which are dynamically loaded as needed.
 
 ## Explanations of the folders and the main files of the project
 In the main folder, FIApp, there are the source files of the project, and 3 folders - Properties, Resources and plugins.<br/>
@@ -26,7 +26,7 @@ In order to run the application, follow the instructions in the home screen. Aft
 Now, the application will display the data and the flight gear simulator will display the plane simultaneously.
 
 ## Links
-here it will be a link for UML and a short video.
+[Link for a short video that demonstrates the user stories](<https://streamable.com/yrhalt/>)
 
 ## Contributors
 Noam Burgansky, Sapir Hender, Tal Cohen and Ella Shalom.
