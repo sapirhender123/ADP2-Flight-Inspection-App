@@ -27,7 +27,7 @@ Now, the application will display the data and the flight gear simulator will di
 
 ## Links
 [uml diagram](https://github.com/sapirhender123/ADP2-Flight-Inspection-App/blob/main/uml.png)<br/>
-[a short video that demonstrates the user stories](https://streamable.com/yrhalt/)
+[a short video that demonstrates the user stories](https://streamable.com/yrhalt)
 
 
 ## Contributors
